@@ -13,4 +13,10 @@ class CoinsController < ApplicationController
 
   	render "coins/index"
   end
+
+  def see_one
+    @coin = Coin.find_by(:name => params[:name], :value => params[:value].to_i)
+
+    render "coins/show"
+  end
 end

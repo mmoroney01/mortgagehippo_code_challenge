@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root :controller => 'index', :action => 'index'
 
   get '/coins' => 'coins#see_all'
+  get '/coins/:id' => 'coins#see_one'
   post '/coins' => 'coins#create'
 end
