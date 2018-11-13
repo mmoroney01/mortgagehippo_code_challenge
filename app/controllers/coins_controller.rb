@@ -47,4 +47,16 @@ class CoinsController < ApplicationController
 
     render "coins/show"
   end
+
+  def total_value
+    @coins = Coin.all
+
+    @total = 0
+
+    @coins.each do |coin|
+      @total += coin.value
+    end
+
+    render 'coins/total_value'
+  end
 end
