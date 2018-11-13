@@ -4,5 +4,8 @@ Rails.application.routes.draw do
 
   get '/coins' => 'coins#see_all'
   get '/coins/:id' => 'coins#see_one'
+  get '/coins/:id/edit' => 'coins#update_one'
+
+  post '/coins/:id' => 'coins#coin_updated'
   post '/coins' => 'coins#create'
 end
