@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 
   post '/coins/:id' => 'coins#coin_updated'
   post '/coins' => 'coins#create'
+
+  delete '/coins/:id' => 'coins#delete_one'
 end
