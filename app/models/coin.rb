@@ -1,5 +1,4 @@
 class Coin < ApplicationRecord
-
   def create
   end
 
