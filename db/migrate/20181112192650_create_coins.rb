@@ -2,7 +2,7 @@ class CreateCoins < ActiveRecord::Migration[5.1]
   def change
     create_table :coins do |t|
       t.string :name
-      t.int :value
+      t.integer :value
 
       t.timestamps
     end
