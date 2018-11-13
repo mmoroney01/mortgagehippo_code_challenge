@@ -16,6 +16,15 @@
 
 <br>
 
+<form action="/coins/:id" method="post">
+<button id="delete-one-coin">Delete One Coin</button><br>
+<input type="text" name="name" placeholder="What's the name of your coin?"><br>
+<input type="integer" name="value" placeholder="How much is your coin worth?">
+<input type="hidden" name="_method" value="DELETE">
+</form>
+
+<br>
+
 <form action="/coins" method="get">
 <button id="see-all-coins">See All Coins</button>
 </form>

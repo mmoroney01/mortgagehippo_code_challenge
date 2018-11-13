@@ -25,6 +25,17 @@ class CoinsController < ApplicationController
     end
   end
 
+  def delete_one
+    @coin = Coin.find_by(:name => params[:name], :value => params[:value].to_i)
+
+    @coin.delete
+
+    respond_to do |f|
+      f.html { redirect_to root_path }
+      f.js
+    end
+  end
+
   def see_all
   	@coins = Coin.all
 
