@@ -20,6 +20,8 @@ class CoinsController < ApplicationController
   end
 
   def delete_one
+
+    p params
     @coin = Coin.find_by(:name => params[:name], :value => params[:value].to_i)
 
     @coin.delete
