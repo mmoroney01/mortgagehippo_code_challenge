@@ -43,3 +43,24 @@
 <form action="/coins/total" method="get">
 <button id="view-coin-total">View Total Coin Value</button>
 </form>
+
+<br>
+
+<form action="/transactions" method="post">
+<button id="create-transaction-button">Deposit a Coin</button><br>
+<input type="text" name="name" placeholder="What's the name of your coin?"><br>
+<input type="integer" name="value" placeholder="How much is your coin worth?">
+</form>
+
+<br>
+
+<form action="/transactions" method="get">
+<button id="see-all-transactions">See All Transactions</button>
+</form>
+
+<br>
+
+<form action="/apiusers/:apiuser_id/transactions" method="get">
+<button id="view-all-transactions-one-user">View All Transactions of One User</button><br>
+<input type="text" name="api_key" placeholder="What's the API Key?"><br>
+</form>

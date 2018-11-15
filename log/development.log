@@ -1103,3 +1103,1456 @@ Migrating to CreateTransactions (20181115170800)
   [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-11-15 17:09:34.727483"], ["updated_at", "2018-11-15 17:09:34.727483"]]
   [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:13:37 -0600
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 229ms (Views: 223.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-11-15 11:13:44 -0600
+Processing by CoinsController#create as HTML
+  Parameters: {"name"=>"", "value"=>""}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", ""], ["value", 0], ["created_at", "2018-11-15 17:13:44.046200"], ["updated_at", "2018-11-15 17:13:44.046200"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 24ms (ActiveRecord: 9.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:13:44 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 17ms (Views: 16.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-11-15 11:13:47 -0600
+Processing by CoinsController#create as HTML
+  Parameters: {"name"=>"michael", "value"=>"450"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "michael"], ["value", 450], ["created_at", "2018-11-15 17:13:47.631079"], ["updated_at", "2018-11-15 17:13:47.631079"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 21ms (ActiveRecord: 7.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:13:47 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 56ms (Views: 55.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 11:13:49 -0600
+Processing by CoinsController#see_all as HTML
+  Rendering coins/index.html.erb within layouts/application
+  [1m[36mCoin Load (0.5ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendered coins/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 23ms (Views: 22.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:13:51 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 28ms (Views: 26.5ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (12.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateApiusers (20181113152635)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "apiusers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "api_key" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181113152635"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTransactions (20181115170800)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "apiuser_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181115170800"]]
+  [1m[35m (14.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCoins (20181115171704)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "deposited?" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181115171704"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-11-15 17:18:40.655515"], ["updated_at", "2018-11-15 17:18:40.655515"]]
+  [1m[35m (9.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:19:55 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 178ms (Views: 172.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-11-15 11:20:01 -0600
+Processing by CoinsController#create as HTML
+  Parameters: {"name"=>"tom", "value"=>"27"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "tom"], ["value", 27], ["created_at", "2018-11-15 17:20:01.142137"], ["updated_at", "2018-11-15 17:20:01.142137"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 38ms (ActiveRecord: 10.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:20:01 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 21ms (Views: 20.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 11:20:19 -0600
+Processing by CoinsController#see_all as HTML
+  Rendering coins/index.html.erb within layouts/application
+  [1m[36mCoin Load (0.8ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendered coins/index.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 88ms (Views: 85.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:20:21 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 50ms (Views: 48.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:21:01 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 18ms (Views: 17.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-11-15 11:21:03 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/transactions"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:21:22 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 18ms (Views: 17.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:21:27 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 39ms (Views: 36.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:22:38 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 20ms (Views: 18.9ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 11:22:40 -0600
+Processing by CoinsController#see_all as HTML
+  Rendering coins/index.html.erb within layouts/application
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendered coins/index.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 31ms (Views: 26.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:22:41 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 69ms (Views: 67.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-11-15 11:22:46 -0600
+Processing by TransactionsController#create as HTML
+  Parameters: {"name"=>"tom", "value"=>"27"}
+Can't verify CSRF token authenticity.
+No template found for TransactionsController#create, rendering head :no_content
+Completed 204 No Content in 33ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:24:39 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 21ms (Views: 20.8ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-11-15 11:24:43 -0600
+Processing by TransactionsController#create as HTML
+  Parameters: {"name"=>"tom", "value"=>"27"}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.5ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "tom"], ["value", 27], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "t"], ["updated_at", "2018-11-15 17:24:43.998161"], ["id", 1]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 69ms (ActiveRecord: 11.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:24:44 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 28ms (Views: 27.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:27:58 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 25ms (Views: 24.0ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-11-15 11:28:02 -0600
+Processing by CoinsController#create as HTML
+  Parameters: {"name"=>"rubycoin", "value"=>"450"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "rubycoin"], ["value", 450], ["created_at", "2018-11-15 17:28:02.561073"], ["updated_at", "2018-11-15 17:28:02.561073"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 56ms (ActiveRecord: 9.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:28:02 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 40ms (Views: 38.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-11-15 11:28:08 -0600
+Processing by TransactionsController#create as HTML
+  Parameters: {"name"=>"rubycoin", "value"=>"450"}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (1.5ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "rubycoin"], ["value", 450], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.1ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "t"], ["updated_at", "2018-11-15 17:28:08.146792"], ["id", 2]]
+  [1m[35m (10.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "apiuser_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["coin_id", 2], ["apiuser_id", 1234], ["created_at", "2018-11-15 17:28:08.194916"], ["updated_at", "2018-11-15 17:28:08.194916"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 76ms (ActiveRecord: 23.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:28:08 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 59ms (Views: 57.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:29:30 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 18ms (Views: 17.6ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:29:34 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/transactions"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:31:01 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 20ms (Views: 19.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:36:11 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 26ms (Views: 25.1ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:36:13 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.1ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (25.2ms)
+Completed 200 OK in 52ms (Views: 44.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:36:24 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 33ms (Views: 30.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:36:54 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.1ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 34ms (Views: 31.3ms | ActiveRecord: 2.0ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "apiusers" ("api_key", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["api_key", "1234"], ["created_at", "2018-11-15 17:37:56.035225"], ["updated_at", "2018-11-15 17:37:56.035225"]]
+  [1m[35m (7.6ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:38:24 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 173ms (Views: 165.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:38:27 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (24.6ms)
+Completed 200 OK in 42ms (Views: 35.5ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:38:30 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 33ms (Views: 31.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:39:14 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 16ms (Views: 14.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:39:16 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mApiuser Load (0.5ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1234], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (13.9ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 2.6ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Apiuser with 'id'=1234):
+  
+app/views/transactions/index.html.erb:11:in `block in _app_views_transactions_index_html_erb__179608239499575257_69848080091880'
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb__179608239499575257_69848080091880'
+app/controllers/transactions_controller.rb:5:in `see_all'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:39:53 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 19ms (Views: 18.1ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-11-15 11:39:57 -0600
+Processing by CoinsController#create as HTML
+  Parameters: {"name"=>"fisctufs", "value"=>"27"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "fisctufs"], ["value", 27], ["created_at", "2018-11-15 17:39:57.194163"], ["updated_at", "2018-11-15 17:39:57.194163"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 51ms (ActiveRecord: 12.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:39:57 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 24ms (Views: 23.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:39:59 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mApiuser Load (0.2ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1234], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (52.4ms)
+Completed 500 Internal Server Error in 77ms (ActiveRecord: 22.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Apiuser with 'id'=1234):
+  
+app/views/transactions/index.html.erb:11:in `block in _app_views_transactions_index_html_erb__179608239499575257_47460119901140'
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb__179608239499575257_47460119901140'
+app/controllers/transactions_controller.rb:5:in `see_all'
+Started DELETE "/coins/:id" for 127.0.0.1 at 2018-11-15 11:40:25 -0600
+Processing by CoinsController#delete_one as HTML
+  Parameters: {"name"=>"michael", "value"=>"45", "id"=>":id"}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.5ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "michael"], ["value", 45], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.5ms)
+
+
+  
+NoMethodError (undefined method `delete' for nil:NilClass):
+  
+app/controllers/coins_controller.rb:31:in `delete_one'
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 11:40:31 -0600
+Processing by CoinsController#see_all as HTML
+  Rendering coins/index.html.erb within layouts/application
+  [1m[36mCoin Load (0.7ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendered coins/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 65ms (Views: 63.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:40:33 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 26ms (Views: 25.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/coins/:id/edit?name=tom&value=27" for 127.0.0.1 at 2018-11-15 11:40:37 -0600
+Processing by CoinsController#update_one as HTML
+  Parameters: {"name"=>"tom", "value"=>"27", "id"=>":id"}
+  [1m[36mCoin Load (0.5ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "tom"], ["value", 27], ["LIMIT", 1]]
+  Rendering coins/update_form.html.erb within layouts/application
+  Rendered coins/update_form.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 57ms (Views: 51.8ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/coins/:id" for 127.0.0.1 at 2018-11-15 11:41:01 -0600
+Processing by CoinsController#delete_one as HTML
+  Parameters: {"name"=>"tom", "value"=>"27", "id"=>":id"}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.4ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "tom"], ["value", 27], ["LIMIT", 1]]
+  [1m[35mSQL (10.3ms)[0m  [1m[31mDELETE FROM "coins" WHERE "coins"."id" = ?[0m  [["id", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 19ms (ActiveRecord: 10.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:41:01 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 49ms (Views: 48.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:41:03 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mApiuser Load (0.8ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1234], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (17.6ms)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 1.8ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Apiuser with 'id'=1234):
+  
+app/views/transactions/index.html.erb:11:in `block in _app_views_transactions_index_html_erb__179608239499575257_47460119314000'
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb__179608239499575257_47460119314000'
+app/controllers/transactions_controller.rb:5:in `see_all'
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 11:41:06 -0600
+Processing by CoinsController#see_all as HTML
+  Rendering coins/index.html.erb within layouts/application
+  [1m[36mCoin Load (0.6ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendered coins/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 62ms (Views: 59.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:41:07 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 39ms (Views: 37.9ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/coins/:id" for 127.0.0.1 at 2018-11-15 11:41:12 -0600
+Processing by CoinsController#delete_one as HTML
+  Parameters: {"name"=>"rubycoin", "value"=>"450", "id"=>":id"}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "rubycoin"], ["value", 450], ["LIMIT", 1]]
+  [1m[35mSQL (7.6ms)[0m  [1m[31mDELETE FROM "coins" WHERE "coins"."id" = ?[0m  [["id", 2]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 17ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:41:12 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 62ms (Views: 59.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 11:41:13 -0600
+Processing by CoinsController#see_all as HTML
+  Rendering coins/index.html.erb within layouts/application
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendered coins/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 17ms (Views: 16.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:41:16 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.4ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (9.0ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.9ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Coin with 'id'=2):
+  
+app/views/transactions/index.html.erb:9:in `block in _app_views_transactions_index_html_erb__179608239499575257_69848047202640'
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb__179608239499575257_69848047202640'
+app/controllers/transactions_controller.rb:5:in `see_all'
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 11:41:21 -0600
+Processing by CoinsController#see_all as HTML
+  Rendering coins/index.html.erb within layouts/application
+  [1m[36mCoin Load (0.5ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendered coins/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 58ms (Views: 55.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:41:22 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 76ms (Views: 74.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-11-15 11:41:25 -0600
+Processing by CoinsController#create as HTML
+  Parameters: {"name"=>"tom", "value"=>"56"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "tom"], ["value", 56], ["created_at", "2018-11-15 17:41:25.852411"], ["updated_at", "2018-11-15 17:41:25.852411"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 18ms (ActiveRecord: 6.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:41:25 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 53ms (Views: 52.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:41:27 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.7ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (9.0ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Coin with 'id'=2):
+  
+app/views/transactions/index.html.erb:9:in `block in _app_views_transactions_index_html_erb__179608239499575257_47460129277640'
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb__179608239499575257_47460129277640'
+app/controllers/transactions_controller.rb:5:in `see_all'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "apiusers"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "apiusers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "api_key" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "coins"[0m
+  [1m[35m (11.8ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "deposited?" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "apiuser_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (17.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181115171704)[0m
+  [1m[35m (5.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181113152635),
+(20181115170800);
+
+[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-11-15 17:41:57.128428"], ["updated_at", "2018-11-15 17:41:57.128428"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "apiusers"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "apiusers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "api_key" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "coins"[0m
+  [1m[35m (14.8ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "deposited?" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "apiuser_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181115171704)[0m
+  [1m[35m (5.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181113152635),
+(20181115170800);
+
+[0m
+  [1m[35m (12.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-11-15 17:41:57.219830"], ["updated_at", "2018-11-15 17:41:57.219830"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2018-11-15 17:41:57.231776"], ["key", "environment"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "apiusers" ("api_key", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["api_key", "1234"], ["created_at", "2018-11-15 17:42:35.587204"], ["updated_at", "2018-11-15 17:42:35.587204"]]
+  [1m[35m (11.8ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:42:53 -0600
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 180ms (Views: 172.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-11-15 11:42:56 -0600
+Processing by CoinsController#create as HTML
+  Parameters: {"name"=>"rubycoin", "value"=>"450"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "rubycoin"], ["value", 450], ["created_at", "2018-11-15 17:42:56.535668"], ["updated_at", "2018-11-15 17:42:56.535668"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 57ms (ActiveRecord: 10.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:42:56 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 31ms (Views: 30.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:42:57 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  Rendered transactions/index.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 66ms (Views: 57.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:43:00 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 34ms (Views: 32.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 11:43:22 -0600
+Processing by CoinsController#see_all as HTML
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:43:32 -0600
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 11:43:32 -0600
+  Rendering coins/index.html.erb within layouts/application
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendered coins/index.html.erb within layouts/application (13.6ms)
+Completed 200 OK in 39ms (Views: 29.0ms | ActiveRecord: 1.3ms)
+
+
+Processing by CoinsController#see_all as HTML
+Processing by IndexController#index as HTML
+  Rendering coins/index.html.erb within layouts/application
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:43:32 -0600
+  [1m[36mCoin Load (0.8ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendering index/index.html.erb within layouts/application
+Processing by IndexController#index as HTML
+  Rendered coins/index.html.erb within layouts/application (11.1ms)
+  Rendered index/index.html.erb within layouts/application (0.3ms)
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 75ms (Views: 71.5ms | ActiveRecord: 1.8ms)
+
+
+Completed 200 OK in 77ms (Views: 76.7ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 67ms (Views: 66.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 11:43:33 -0600
+Processing by CoinsController#see_all as HTML
+  Rendering coins/index.html.erb within layouts/application
+  [1m[36mCoin Load (0.4ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendered coins/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 54ms (Views: 50.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:43:34 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 57ms (Views: 55.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-11-15 11:43:40 -0600
+Processing by TransactionsController#create as HTML
+  Parameters: {"name"=>"rubycoin", "value"=>"450"}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.6ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "rubycoin"], ["value", 450], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "t"], ["updated_at", "2018-11-15 17:43:40.058437"], ["id", 1]]
+  [1m[35m (11.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "apiuser_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["coin_id", 1], ["apiuser_id", 1], ["created_at", "2018-11-15 17:43:40.111070"], ["updated_at", "2018-11-15 17:43:40.111070"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 79ms (ActiveRecord: 23.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:43:40 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 74ms (Views: 72.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:43:42 -0600
+Processing by TransactionsController#see_all as HTML
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.6ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mApiuser Load (0.8ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (51.9ms)
+Completed 200 OK in 94ms (Views: 86.5ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:43:46 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 79ms (Views: 76.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:46:33 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 73ms (Views: 71.5ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?name=1234" for 127.0.0.1 at 2018-11-15 11:46:37 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/apiusers/:apiuser_id/transactions"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:47:50 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 18ms (Views: 17.3ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?name=1234" for 127.0.0.1 at 2018-11-15 11:47:53 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"name"=>"1234", "apiuser_id"=>":apiuser_id"}
+Completed 406 Not Acceptable in 50ms
+
+
+  
+ActionController::UnknownFormat (TransactionsController#see_all_transactions_one_user is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.1.6) lib/action_controller/metal/implicit_render.rb:53:in `default_render'
+actionpack (5.1.6) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+actionpack (5.1.6) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+actionpack (5.1.6) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+actionpack (5.1.6) lib/abstract_controller/base.rb:186:in `process_action'
+actionpack (5.1.6) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.1.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+activesupport (5.1.6) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.1.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.6) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.6) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.6) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.6) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.6) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.6) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.6) lib/abstract_controller/base.rb:124:in `process'
+actionview (5.1.6) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.6) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.6) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:844:in `call'
+rack (2.0.6) lib/rack/etag.rb:25:in `call'
+rack (2.0.6) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.6) lib/rack/head.rb:12:in `call'
+rack (2.0.6) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.6) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.6) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:49:33 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 32ms (Views: 31.4ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?name=1234" for 127.0.0.1 at 2018-11-15 11:49:37 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"name"=>"1234", "apiuser_id"=>":apiuser_id"}
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (4.3ms)
+Completed 500 Internal Server Error in 14ms
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_47244278970140'
+app/controllers/transactions_controller.rb:27:in `see_all_transactions_one_user'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:50:19 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 74ms (Views: 73.1ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?apiuser_id=1234" for 127.0.0.1 at 2018-11-15 11:50:21 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"apiuser_id"=>":apiuser_id"}
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (9.4ms)
+Completed 500 Internal Server Error in 18ms
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_69901378595820'
+app/controllers/transactions_controller.rb:27:in `see_all_transactions_one_user'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:51:45 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 63ms (Views: 62.2ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?apiuser_id=1234" for 127.0.0.1 at 2018-11-15 11:51:48 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"apiuser_id"=>":apiuser_id"}
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (8.4ms)
+Completed 500 Internal Server Error in 18ms
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_69901532414320'
+app/controllers/transactions_controller.rb:27:in `see_all_transactions_one_user'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:53:10 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 23ms (Views: 22.1ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?apiuserid=1234" for 127.0.0.1 at 2018-11-15 11:53:13 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"apiuserid"=>"1234", "apiuser_id"=>":apiuser_id"}
+  [1m[36mTransaction Load (1.1ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."apiuser_id" = ? LIMIT ?[0m  [["apiuser_id", 0], ["LIMIT", 1]]
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (5.1ms)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 3.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_69901297906900'
+app/controllers/transactions_controller.rb:27:in `see_all_transactions_one_user'
+  [1m[36mApiuser Load (0.9ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:55:23 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 23ms (Views: 21.7ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?api_key=1234" for 127.0.0.1 at 2018-11-15 11:55:26 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"api_key"=>"1234", "apiuser_id"=>":apiuser_id"}
+  [1m[36mApiuser Load (0.4ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1234], ["LIMIT", 1]]
+Completed 404 Not Found in 20ms (ActiveRecord: 4.9ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Apiuser with 'id'=1234):
+  
+app/controllers/transactions_controller.rb:25:in `see_all_transactions_one_user'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:55:53 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 25ms (Views: 24.3ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?api_key=1234" for 127.0.0.1 at 2018-11-15 11:55:55 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"api_key"=>"1234", "apiuser_id"=>":apiuser_id"}
+  [1m[36mApiuser Load (0.7ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."api_key" = ? LIMIT ?[0m  [["api_key", "1234"], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."apiuser_id" = ? LIMIT ?[0m  [["apiuser_id", 1], ["LIMIT", 1]]
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (6.8ms)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 5.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Transaction:0x007f265ce94f38>):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_69901371939920'
+app/controllers/transactions_controller.rb:29:in `see_all_transactions_one_user'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:56:08 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 23ms (Views: 22.2ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?api_key=1234" for 127.0.0.1 at 2018-11-15 11:56:10 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"api_key"=>"1234", "apiuser_id"=>":apiuser_id"}
+  [1m[36mApiuser Load (0.9ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."api_key" = ? LIMIT ?[0m  [["api_key", "1234"], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.7ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."apiuser_id" = ? LIMIT ?[0m  [["apiuser_id", 1], ["LIMIT", 1]]
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (8.7ms)
+Completed 500 Internal Server Error in 62ms (ActiveRecord: 6.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Transaction:0x007f265809b4a8>):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_69901331232640'
+app/controllers/transactions_controller.rb:31:in `see_all_transactions_one_user'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:56:56 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 22ms (Views: 21.3ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 11:57:00 -0600
+Processing by TransactionsController#see_all as HTML
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" LIMIT ?[0m  [["LIMIT", 11]]
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mApiuser Load (0.1ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (19.6ms)
+Completed 200 OK in 65ms (Views: 34.6ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:57:11 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 71ms (Views: 70.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?api_key=1234" for 127.0.0.1 at 2018-11-15 11:57:14 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"api_key"=>"1234", "apiuser_id"=>":apiuser_id"}
+  [1m[36mApiuser Load (0.5ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."api_key" = ? LIMIT ?[0m  [["api_key", "1234"], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."apiuser_id" = ? LIMIT ?[0m  [["apiuser_id", 1], ["LIMIT", 1]]
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (19.8ms)
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 1.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Transaction:0x007f2660223110>):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_69901399163280'
+app/controllers/transactions_controller.rb:33:in `see_all_transactions_one_user'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:59:19 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 50ms (Views: 47.4ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?api_key=1234" for 127.0.0.1 at 2018-11-15 11:59:21 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"api_key"=>"1234", "apiuser_id"=>":apiuser_id"}
+  [1m[36mApiuser Load (0.8ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."api_key" = ? LIMIT ?[0m  [["api_key", "1234"], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."apiuser_id" = ? LIMIT ?[0m  [["apiuser_id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 65ms (ActiveRecord: 8.3ms)
+
+
+  
+NoMethodError (undefined method `each' for #<Transaction:0x007f26604bd560>):
+  
+app/controllers/transactions_controller.rb:33:in `see_all_transactions_one_user'
+Started GET "/" for 127.0.0.1 at 2018-11-15 11:59:55 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 39ms (Views: 37.6ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-11-15 12:00:07 -0600
+Processing by CoinsController#create as HTML
+  Parameters: {"name"=>"tom", "value"=>"56"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "tom"], ["value", 56], ["created_at", "2018-11-15 18:00:07.868942"], ["updated_at", "2018-11-15 18:00:07.868942"]]
+  [1m[35m (11.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 55ms (ActiveRecord: 16.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 12:00:07 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 31ms (Views: 30.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-11-15 12:00:09 -0600
+Processing by CoinsController#see_all as HTML
+  Rendering coins/index.html.erb within layouts/application
+  [1m[36mCoin Load (0.8ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  Rendered coins/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 87ms (Views: 83.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 12:00:10 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 61ms (Views: 59.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 12:00:12 -0600
+Processing by TransactionsController#see_all as HTML
+  [1m[36mTransaction Load (1.1ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" LIMIT ?[0m  [["LIMIT", 11]]
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.4ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mApiuser Load (0.3ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (15.4ms)
+Completed 200 OK in 69ms (Views: 33.7ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 12:00:14 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 52ms (Views: 50.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-11-15 12:00:18 -0600
+Processing by TransactionsController#create as HTML
+  Parameters: {"name"=>"tom", "value"=>"56"}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.8ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "tom"], ["value", 56], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "t"], ["updated_at", "2018-11-15 18:00:18.760979"], ["id", 2]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "apiuser_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["coin_id", 2], ["apiuser_id", 1], ["created_at", "2018-11-15 18:00:18.779797"], ["updated_at", "2018-11-15 18:00:18.779797"]]
+  [1m[35m (12.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 54ms (ActiveRecord: 21.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 12:00:18 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 63ms (Views: 61.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 12:00:20 -0600
+Processing by TransactionsController#see_all as HTML
+  [1m[36mTransaction Load (0.7ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" LIMIT ?[0m  [["LIMIT", 11]]
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (1.1ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mApiuser Load (0.4ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.5ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Apiuser Load (0.0ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 93ms (Views: 84.7ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 12:00:36 -0600
+Processing by TransactionsController#see_all as HTML
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" LIMIT ?[0m  [["LIMIT", 11]]
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (1.1ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mApiuser Load (0.2ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Apiuser Load (0.0ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 36ms (Views: 29.6ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 12:00:40 -0600
+Processing by TransactionsController#see_all as HTML
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" LIMIT ?[0m  [["LIMIT", 11]]
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.9ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mApiuser Load (0.2ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Apiuser Load (0.0ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 37ms (Views: 31.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 12:00:52 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 32ms (Views: 30.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?api_key=1234" for 127.0.0.1 at 2018-11-15 12:00:55 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"api_key"=>"1234", "apiuser_id"=>":apiuser_id"}
+  [1m[36mApiuser Load (0.7ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."api_key" = ? LIMIT ?[0m  [["api_key", "1234"], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.7ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."apiuser_id" = ? LIMIT ?[0m  [["apiuser_id", 1], ["LIMIT", 1]]
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (20.2ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 1.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Transaction:0x007f265d0d6828>):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_69901385480700'
+app/controllers/transactions_controller.rb:31:in `see_all_transactions_one_user'
+Started GET "/" for 127.0.0.1 at 2018-11-15 12:01:18 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 35ms (Views: 34.0ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?api_key=1234" for 127.0.0.1 at 2018-11-15 12:01:20 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"api_key"=>"1234", "apiuser_id"=>":apiuser_id"}
+  [1m[36mApiuser Load (0.5ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."api_key" = ? LIMIT ?[0m  [["api_key", "1234"], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."apiuser_id" = ? LIMIT ?[0m  [["apiuser_id", 1], ["LIMIT", 1]]
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (7.9ms)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 6.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Transaction:0x007f2660d4efd0>):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_69901405052520'
+app/controllers/transactions_controller.rb:33:in `see_all_transactions_one_user'
+Started GET "/transactions" for 127.0.0.1 at 2018-11-15 12:01:41 -0600
+Processing by TransactionsController#see_all as HTML
+  [1m[36mTransaction Load (0.8ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" LIMIT ?[0m  [["LIMIT", 11]]
+  Rendering transactions/index.html.erb within layouts/application
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+  [1m[36mCoin Load (0.4ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mApiuser Load (0.1ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Apiuser Load (0.0ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered transactions/index.html.erb within layouts/application (17.2ms)
+Completed 200 OK in 48ms (Views: 31.8ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 12:01:43 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 40ms (Views: 37.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-11-15 12:02:01 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 14ms (Views: 13.9ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?api_key=1234" for 127.0.0.1 at 2018-11-15 12:02:02 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"api_key"=>"1234", "apiuser_id"=>":apiuser_id"}
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (9.6ms)
+Completed 500 Internal Server Error in 18ms
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_69901301626840'
+app/controllers/transactions_controller.rb:33:in `see_all_transactions_one_user'
+Started GET "/" for 127.0.0.1 at 2018-11-15 12:03:30 -0600
+Processing by IndexController#index as HTML
+  Rendering index/index.html.erb within layouts/application
+  Rendered index/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 25ms (Views: 24.1ms)
+
+
+Started GET "/apiusers/:apiuser_id/transactions?api_key=1234" for 127.0.0.1 at 2018-11-15 12:03:32 -0600
+Processing by TransactionsController#see_all_transactions_one_user as HTML
+  Parameters: {"api_key"=>"1234", "apiuser_id"=>":apiuser_id"}
+  [1m[36mApiuser Load (0.5ms)[0m  [1m[34mSELECT  "apiusers".* FROM "apiusers" WHERE "apiusers"."api_key" = ? LIMIT ?[0m  [["api_key", "1234"], ["LIMIT", 1]]
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (6.9ms)
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 3.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    4: 
+    5: <h1>All Transactions:</h1>
+    6: 
+    7: <% @transactions.each do |transaction| %>
+    8: time: <%= transaction.created_at %><br>
+    9: coin name: <%= Coin.find(transaction.coin_id).name %><br>
+   10: coin value: <%= Coin.find(transaction.coin_id).value %><br>
+  
+app/views/transactions/index.html.erb:7:in `_app_views_transactions_index_html_erb___3605667850560598716_69901264020760'
+app/controllers/transactions_controller.rb:37:in `see_all_transactions_one_user'
