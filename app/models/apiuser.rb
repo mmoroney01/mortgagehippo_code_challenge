@@ -1,0 +1,2 @@
+class Apiuser < ApplicationRecord
+end
