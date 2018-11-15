@@ -37,6 +37,10 @@ class CoinsController < ApplicationController
   end
 
   def see_all
+    p params
+
+    
+    
   	@coins = Coin.all
 
   	render "coins/index"
