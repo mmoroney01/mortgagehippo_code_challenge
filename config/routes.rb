@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   post '/coins' => 'coins#create'
 
   delete '/coins/:id' => 'coins#delete_one'
+
+  get '/transactions' => "transactions#see_all"
+
+  post '/transactions' => 'transactions#create'
+
+  get '/apiusers/:apiuser_id/transactions' => "transactions#see_all_transactions_one_user"
 end
