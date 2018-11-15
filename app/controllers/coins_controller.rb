@@ -2,10 +2,7 @@ class CoinsController < ApplicationController
   def create
   	coin = Coin.create(:name => params[:name], :value => params[:value].to_i)
 
-  	respond_to do |f|
-      f.html { redirect_to root_path }
-      f.js
-    end
+    redirect_to root_path
   end
 
   def update_one
@@ -19,10 +16,7 @@ class CoinsController < ApplicationController
 
     @coin.update(name: params[:name], value: params[:value])
 
-    respond_to do |f|
-      f.html { redirect_to root_path }
-      f.js
-    end
+    redirect_to root_path
   end
 
   def delete_one
@@ -30,10 +24,7 @@ class CoinsController < ApplicationController
 
     @coin.delete
 
-    respond_to do |f|
-      f.html { redirect_to root_path }
-      f.js
-    end
+    redirect_to root_path
   end
 
   def see_all
