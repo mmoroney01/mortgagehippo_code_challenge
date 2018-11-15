@@ -1,13 +1,5 @@
 <h1>Coin Machine API</h1>
 
-
-
-<!-- <form action="/coins" method="post">
-<button id="create-coin-button" type="submit">Create Coin</button><br>
-<input type="text" name="name" placeholder="What's the name of your coin?"><br>
-<input type="integer" name="value" placeholder="How much is your coin worth?">
-</form><br> -->
-
 <%= form_tag("/coins", method: "post") do %>
   <%= text_field_tag :name, nil, placeholder: "Name of Coin" %><br>
   <%= number_field_tag :value, nil, placeholder: "Value of Coin" %><br>
@@ -33,11 +25,8 @@
 
 <br>
 
-<form action="/coins" method="get">
-<button id="see-all-coins">See All Coins</button>
-</form>
+<%= button_to 'See All Coins', coins_path, method: "get" %>
 
-<br>
 <br>
 
 <form action="/coins/:id" method="get">
