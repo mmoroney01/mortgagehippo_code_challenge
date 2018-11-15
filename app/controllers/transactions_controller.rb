@@ -22,18 +22,5 @@ class TransactionsController < ApplicationController
 
   def see_all_transactions_one_user
 
-  	p params
-
-
-
-  	@apiuser = Apiuser.find_by(api_key: params[:api_key])
-
-  	p @apiuser
-
-  	# @transactions = Transaction.find_by(apiuser_id: @apiuser.id)
-
-  	# p @transactions
-
-  	render 'transactions/index'
   end
 end
