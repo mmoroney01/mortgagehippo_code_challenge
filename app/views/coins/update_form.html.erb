@@ -1,6 +1,10 @@
+<form action="/">
+<button id="back-button">Home</button>
+</form>
+
 <h1>Update a Coin</h1>
 
-old name: <%= @coin.name%><br>
+old name: <%= @coin.name %><br>
 old value: <%= @coin.value %><br><br>
 
 <form action="/coins/<%=@coin.id%>" method="post">
