@@ -1,9 +1,7 @@
 class TransactionsController < ApplicationController
   def see_all
   	@transactions = Transaction.all
-
-  	p @transactions
-
+    
   	render 'transactions/index'
   end
 
