@@ -8,9 +8,19 @@
 
 <br>
 
-<%= form_tag("/coins/:id/edit", method: "get") do %>
+<%= form_tag("/coins/:id", method: "get") do %>
   <%= text_field_tag :name, nil, placeholder: "Name of Coin" %><br>
   <%= number_field_tag :value, nil, placeholder: "Value of Coin" %><br>
+  <%= submit_tag("See Coin") %>
+<% end %>
+
+<br>
+
+<%= form_tag("/coins/:id", method: "put") do %>
+  <%= text_field_tag :old_name, nil, placeholder: "Name of Coin" %><br>
+  <%= number_field_tag :old_value, nil, placeholder: "Value of Coin" %><br>
+  <%= text_field_tag :new_name, nil, placeholder: "New Name of Coin" %><br>
+  <%= number_field_tag :new_value, nil, placeholder: "New Value of Coin" %><br>
   <%= submit_tag("Update Coin") %>
 <% end %>
 
@@ -24,19 +34,11 @@
 
 <br>
 
-<%= button_to 'View All Coins', coins_path, method: "get" %>
+<%= button_to 'See All Coins', coins_path, method: "get" %>
 
 <br>
 
-<%= form_tag("/coins/:id", method: "get") do %>
-  <%= text_field_tag :name, nil, placeholder: "Name of Coin" %><br>
-  <%= number_field_tag :value, nil, placeholder: "Value of Coin" %><br>
-  <%= submit_tag("View Coin") %>
-<% end %>
-
-<br>
-
-<%= button_to "View Coin Total", coins_total_path, method: "get" %>
+<%= button_to "See Coin Total", coins_total_path, method: "get" %>
 
 <br>
 <br>

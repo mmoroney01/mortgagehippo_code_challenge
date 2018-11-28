@@ -1,45 +1,53 @@
 class CoinsController < ApplicationController
+  def index
+    @coins = Coin.all
+    if @coins
+      render json: @coins
+    else
+      render json: { msg: "There are no coins."}
+    end
+  end
 
   def create
-  	coin = Coin.create(:name => params[:name], :value => params[:value].to_i)
+  	@coin = Coin.create(:name => params[:name], :value => params[:value].to_i)
 
-    redirect_to root_path
+    if @coin
+      render json: @coin
+    else
+      render json: { msg: "This coin could not be created."}
+    end
   end
 
-  def update_one
+  def show
     @coin = Coin.find_by(:name => params[:name], :value => params[:value].to_i)
 
-    render "coins/update_form"
+    if @coin
+      render json: @coin
+    else
+      render json: { msg: "This coin does not exist."}
+    end
   end
 
-  def coin_updated
-    @coin = Coin.find(params[:id])
+  def update
+    @coin = Coin.find_by(:name => params[:old_name], :value => params[:old_value].to_i)
 
-    @coin.update(name: params[:name], value: params[:value])
-
-    redirect_to root_path
+    if @coin
+      @coin.update(:name => params[:new_name], :value => params[:new_value].to_i)
+      render json: { msg: "Coin updated."}
+    else
+      render json: { msg: "This coin does not exist."}
+    end
   end
 
-  def delete_one
+  def delete
     @coin = Coin.find_by(:name => params[:name], :value => params[:value].to_i)
 
-    @coin.delete
-
-    redirect_to root_path
-  end
-
-  
-
-  def see_all
-  	@coins = Coin.all
-
-  	render "coins/index"
-  end
-
-  def see_one
-    @coin = Coin.find_by(:name => params[:name], :value => params[:value].to_i)
-
-    render "coins/show"
+    if @coin
+      @coin.delete
+      render json: { msg: 'Coin deleted.' }
+    else
+      render json: { msg: 'This coin does not exist.'}
+    end
   end
 
   def total_value
@@ -51,6 +59,6 @@ class CoinsController < ApplicationController
       @total += coin.value
     end
 
-    render 'coins/total_value'
+    render json: @total
   end
 end
