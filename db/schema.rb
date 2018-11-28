@@ -10,13 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181115171704) do
-
-  create_table "apiusers", force: :cascade do |t|
-    t.string "api_key"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20181128013413) do
 
   create_table "coins", force: :cascade do |t|
     t.string "name", null: false
@@ -29,6 +23,12 @@ ActiveRecord::Schema.define(version: 20181115171704) do
   create_table "transactions", force: :cascade do |t|
     t.integer "coin_id"
     t.integer "apiuser_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "api_key", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
