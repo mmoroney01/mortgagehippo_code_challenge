@@ -3,14 +3,14 @@ Rails.application.routes.draw do
   root :controller => 'index', :action => 'index'
 
   get '/coins/total' => 'coins#total_value'
-  get '/coins' => 'coins#see_all'
-  get '/coins/:id' => 'coins#see_one'
-  get '/coins/:id/edit' => 'coins#update_one'
+  get '/coins' => 'coins#index'
+  get '/coins/:id' => 'coins#show'
+  put '/coins/:id' => 'coins#update'
 
   post '/coins/:id' => 'coins#coin_updated'
   post '/coins' => 'coins#create'
 
-  delete '/coins/:id' => 'coins#delete_one'
+  delete '/coins/:id' => 'coins#delete'
 
   get '/transactions' => "transactions#see_all"
 
