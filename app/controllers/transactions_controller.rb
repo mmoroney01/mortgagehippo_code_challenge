@@ -1,8 +1,9 @@
 class TransactionsController < ApplicationController
+  
   def see_all
   	@transactions = Transaction.all
     
-  	render 'transactions/index'
+  	render json: @transactions
   end
 
   def create
