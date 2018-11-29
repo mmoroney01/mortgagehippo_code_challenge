@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
-  
+  before_action :authenticate_user
+
   def see_all
   	@transactions = Transaction.all
     
@@ -7,19 +8,12 @@ class TransactionsController < ApplicationController
   end
 
   def create
-  	@coin = Coin.find_by(:name => params[:name], :value => params[:value].to_i)
+  	@transaction = Transaction.create(coin_id: params[:transaction][:coin_id], user_id: current_user.id)
 
-  	@coin.update(deposited?: true)
-
-  	Transaction.create(coin_id: @coin.id, apiuser_id: "1")
-
-  	respond_to do |f|
-      f.html { redirect_to root_path }
-      f.js
+   if @transaction
+      render json: { msg: "your coin has been deposited" }
+    else
+      render json: { msg: "your coin could not be deposited" }
     end
-  end
-
-  def see_all_transactions_one_user
-
   end
 end

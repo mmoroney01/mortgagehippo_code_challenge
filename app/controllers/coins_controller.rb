@@ -1,5 +1,5 @@
 class CoinsController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
   
   def index
     @coins = Coin.all
@@ -11,7 +11,7 @@ class CoinsController < ApplicationController
   end
 
   def create
-  	@coin = Coin.create(:name => params[:name], :value => params[:value].to_i)
+  	@coin = Coin.create(:name => params[:coin][:name], :value => params[:coin][:value].to_i)
 
     if @coin
       render json: @coin
@@ -21,7 +21,7 @@ class CoinsController < ApplicationController
   end
 
   def show
-    @coin = Coin.find_by(:name => params[:name], :value => params[:value].to_i)
+    @coin = Coin.find(params[:id])
 
     if @coin
       render json: @coin
@@ -31,10 +31,10 @@ class CoinsController < ApplicationController
   end
 
   def update
-    @coin = Coin.find_by(:name => params[:old_name], :value => params[:old_value].to_i)
+    @coin = Coin.find(params[:id])
 
     if @coin
-      @coin.update(:name => params[:new_name], :value => params[:new_value].to_i)
+      @coin.update(:name => params[:name], :value => params[:value].to_i)
       render json: { msg: "Coin updated."}
     else
       render json: { msg: "This coin does not exist."}
@@ -42,8 +42,8 @@ class CoinsController < ApplicationController
   end
 
   def delete
-    @coin = Coin.find_by(:name => params[:name], :value => params[:value].to_i)
-
+    @coin = Coin.find(params[:id])
+    
     if @coin
       @coin.delete
       render json: { msg: 'Coin deleted.' }

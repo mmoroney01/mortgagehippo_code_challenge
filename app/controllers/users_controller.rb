@@ -32,6 +32,12 @@ class UsersController < ApplicationController
       render json: { status: 200, msg: 'User has been deleted.' }
     end
   end
+
+  def transactions
+    @transactions = Transaction.find_by(user_id: current_user.id)
+
+    render json: @transactions
+  end
   
   private
   
