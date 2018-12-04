@@ -47,12 +47,3 @@ class TransactionsController < ApplicationController
     params.require(:transaction).permit(:coin_id, :deposit, :withdrawal, :user_id)
   end
 end
-
-# {
-#   "transaction": {
-#     "coin_id": 2,
-#     "user_id": 1,
-#     "deposit": true,
-#     "withdrawal": false
-#   }
-# }
