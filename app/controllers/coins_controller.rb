@@ -11,9 +11,9 @@ class CoinsController < ApplicationController
   end
 
   def create
-  	@coin = Coin.create(:name => params[:coin][:name], :value => params[:coin][:value].to_i)
+    @coin = Coin.new(coin_params)
 
-    if @coin
+    if @coin.save
       render json: @coin
     else
       render json: { msg: "This coin could not be created."}
@@ -70,3 +70,4 @@ class CoinsController < ApplicationController
     params.require(:coin).permit(:value, :name)
   end
 end
+

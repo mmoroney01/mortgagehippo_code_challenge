@@ -16,10 +16,6 @@ Rails.application.routes.draw do
   get '/coins/total' => 'coins#total_value'
   resources :coins, only: [:index, :show, :create, :update, :destroy]
 
-
-  get '/transactions' => "transactions#see_all"
-
   post '/transactions' => 'transactions#create'
-
-  # resources :transactions, only: [:index, :show, :create]
+  resources :transactions, only: [:index, :show, :create]
 end
