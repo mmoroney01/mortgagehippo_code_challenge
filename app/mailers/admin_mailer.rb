@@ -1,7 +1,7 @@
 class AdminMailer < ApplicationMailer
   def welcome_email(user)
     @user = user
-    mail(to: user.email, subject: 'Welcome to the Coin Machine API!')
+    mail(to: @user.email, subject: 'Welcome to the Coin Machine API!')
   end
 
   def four_coins_or_less(users, coin, coin_total)
