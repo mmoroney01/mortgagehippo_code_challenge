@@ -7603,3 +7603,1030 @@ Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
 ActiveRecord::RecordNotFound (Couldn't find Coin with 'id'=1):
   
 app/controllers/coins_controller.rb:24:in `show'
+Started GET "/coins" for 127.0.0.1 at 2018-12-04 13:37:52 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoinsController#index as */*
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+No serializer found for resource: #<Coin id: 2, name: "tibcoin", value: 9000, created_at: "2018-12-04 15:50:50", updated_at: "2018-12-04 16:54:32", deposited?: false>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Coin::ActiveRecord_Relation (0.39ms)
+Completed 200 OK in 37ms (Views: 24.6ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 13:38:25 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>3, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 3], ["user_id", 1], ["created_at", "2018-12-04 19:38:25.829070"], ["updated_at", "2018-12-04 19:38:25.829070"], ["withdrawal", "t"]]
+  [1m[35m (4.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 46ms (ActiveRecord: 6.3ms)
+
+
+  
+NoMethodError (undefined method `find_all' for #<Class:0x0055f3c3f5ed78>
+Did you mean?  find_each):
+  
+app/controllers/transactions_controller.rb:29:in `create'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "coins"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deposited?" boolean DEFAULT 'f')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deposit" boolean DEFAULT 'f', "withdrawal" boolean DEFAULT 'f')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar DEFAULT 'user' NOT NULL, "last_login" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE  INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181129213612)[0m
+  [1m[35m (5.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181115171704),
+(20181128013413),
+(20181115170800);
+
+[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-04 19:45:49.723945"], ["updated_at", "2018-12-04 19:45:49.723945"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "coins"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deposited?" boolean DEFAULT 'f')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (15.8ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deposit" boolean DEFAULT 'f', "withdrawal" boolean DEFAULT 'f')[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar DEFAULT 'user' NOT NULL, "last_login" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE  INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (4.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181129213612)[0m
+  [1m[35m (4.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181115171704),
+(20181128013413),
+(20181115170800);
+
+[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-04 19:45:49.831565"], ["updated_at", "2018-12-04 19:45:49.831565"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2018-12-04 19:45:49.843240"], ["key", "environment"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "coins"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (12.4ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "amount" integer DEFAULT 0, "amount_deposited" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deposit" boolean DEFAULT 'f', "withdrawal" boolean DEFAULT 'f')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar DEFAULT 'user' NOT NULL, "last_login" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE  INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (8.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181129213612)[0m
+  [1m[35m (10.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181115171704),
+(20181128013413),
+(20181115170800);
+
+[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-04 19:46:36.373709"], ["updated_at", "2018-12-04 19:46:36.373709"]]
+  [1m[35m (10.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "coins"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "amount" integer DEFAULT 0, "amount_deposited" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (12.6ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deposit" boolean DEFAULT 'f', "withdrawal" boolean DEFAULT 'f')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar DEFAULT 'user' NOT NULL, "last_login" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE  INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (6.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181129213612)[0m
+  [1m[35m (6.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181115171704),
+(20181128013413),
+(20181115170800);
+
+[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-04 19:46:36.497817"], ["updated_at", "2018-12-04 19:46:36.497817"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2018-12-04 19:46:36.508310"], ["key", "environment"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "coins"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deposit" boolean DEFAULT 'f', "withdrawal" boolean DEFAULT 'f')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar DEFAULT 'user' NOT NULL, "last_login" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (14.1ms)[0m  [1m[35mCREATE  INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (12.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181129213612)[0m
+  [1m[35m (5.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181115171704),
+(20181128013413),
+(20181115170800);
+
+[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-04 19:48:57.776123"], ["updated_at", "2018-12-04 19:48:57.776123"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "coins"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deposit" boolean DEFAULT 'f', "withdrawal" boolean DEFAULT 'f')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar DEFAULT 'user' NOT NULL, "last_login" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (11.1ms)[0m  [1m[35mCREATE  INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (20.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181129213612)[0m
+  [1m[35m (8.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181115171704),
+(20181128013413),
+(20181115170800);
+
+[0m
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-04 19:48:57.899871"], ["updated_at", "2018-12-04 19:48:57.899871"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2018-12-04 19:48:57.920131"], ["key", "environment"]]
+  [1m[35m (10.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "coins"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "deposited?" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deposit" boolean DEFAULT 'f', "withdrawal" boolean DEFAULT 'f')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar DEFAULT 'user' NOT NULL, "last_login" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE  INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (12.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181129213612)[0m
+  [1m[35m (10.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181115171704),
+(20181128013413),
+(20181115170800);
+
+[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-04 19:50:08.070232"], ["updated_at", "2018-12-04 19:50:08.070232"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "coins"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "coins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "value" integer NOT NULL, "deposited?" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deposit" boolean DEFAULT 'f', "withdrawal" boolean DEFAULT 'f')[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar DEFAULT 'user' NOT NULL, "last_login" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE  INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (11.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181129213612)[0m
+  [1m[35m (10.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181115171704),
+(20181128013413),
+(20181115170800);
+
+[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-04 19:50:08.186102"], ["updated_at", "2018-12-04 19:50:08.186102"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2018-12-04 19:50:08.200404"], ["key", "environment"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/coins" for 127.0.0.1 at 2018-12-04 13:58:22 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoinsController#create as */*
+  Parameters: {"coin"=>{"name"=>"bitcoin", "value"=>"0"}}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.8ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 2)):
+  
+app/models/coin.rb:5:in `quantity'
+app/controllers/coins_controller.rb:16:in `create'
+Started POST "/coins" for 127.0.0.1 at 2018-12-04 13:58:48 -0600
+Processing by CoinsController#create as */*
+  Parameters: {"coin"=>{"name"=>"bitcoin", "value"=>"0"}}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 1.3ms)
+
+
+  
+NoMethodError (undefined method `find_all' for #<Class:0x0055c5e32c6ab0>
+Did you mean?  find_each):
+  
+app/models/coin.rb:6:in `quantity'
+app/controllers/coins_controller.rb:16:in `create'
+Started POST "/coins" for 127.0.0.1 at 2018-12-04 13:59:15 -0600
+Processing by CoinsController#create as */*
+  Parameters: {"coin"=>{"name"=>"bitcoin", "value"=>"0"}}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 1.3ms)
+
+
+  
+ArgumentError (unknown keywords: name, value):
+  
+app/models/coin.rb:6:in `quantity'
+app/controllers/coins_controller.rb:16:in `create'
+Started POST "/coins" for 127.0.0.1 at 2018-12-04 14:00:05 -0600
+Processing by CoinsController#create as */*
+  Parameters: {"coin"=>{"name"=>"bitcoin", "value"=>"0"}}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.6ms)
+
+
+  
+ArgumentError (unknown keywords: name, value):
+  
+app/models/coin.rb:7:in `quantity'
+app/controllers/coins_controller.rb:16:in `create'
+Started POST "/coins" for 127.0.0.1 at 2018-12-04 14:00:56 -0600
+Processing by CoinsController#create as */*
+  Parameters: {"coin"=>{"name"=>"bitcoin", "value"=>"0"}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "bitcoin"], ["value", 0], ["LIMIT", 11]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "bitcoin"], ["value", 0], ["LIMIT", 11]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "bitcoin"], ["value", 0], ["created_at", "2018-12-04 20:00:56.787572"], ["updated_at", "2018-12-04 20:00:56.787572"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Coin (0.42ms)
+Completed 200 OK in 38ms (Views: 15.1ms | ActiveRecord: 6.4ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-12-04 14:01:15 -0600
+Processing by CoinsController#create as */*
+  Parameters: {"coin"=>{"name"=>"bitcoin", "value"=>"0"}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "bitcoin"], ["value", 0], ["LIMIT", 11]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "bitcoin"], ["value", 0], ["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "bitcoin"], ["value", 0], ["created_at", "2018-12-04 20:01:15.614084"], ["updated_at", "2018-12-04 20:01:15.614084"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Coin (0.36ms)
+Completed 200 OK in 41ms (Views: 12.3ms | ActiveRecord: 7.4ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-12-04 14:01:47 -0600
+Processing by CoinsController#create as */*
+  Parameters: {"coin"=>{"name"=>"bitcoin", "value"=>"0"}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? LIMIT ?[0m  [["name", "bitcoin"], ["value", 0], ["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "bitcoin"], ["value", 0], ["created_at", "2018-12-04 20:01:47.492373"], ["updated_at", "2018-12-04 20:01:47.492373"]]
+  [1m[35m (4.4ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Coin (0.68ms)
+Completed 200 OK in 33ms (Views: 11.4ms | ActiveRecord: 6.8ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-12-04 14:02:05 -0600
+Processing by CoinsController#create as */*
+  Parameters: {"coin"=>{"name"=>"bitcoin", "value"=>"0"}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ?[0m  [["name", "bitcoin"], ["value", 0]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "bitcoin"], ["value", 0], ["created_at", "2018-12-04 20:02:05.234797"], ["updated_at", "2018-12-04 20:02:05.234797"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Coin (0.23ms)
+Completed 200 OK in 27ms (Views: 5.5ms | ActiveRecord: 7.1ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:05:00 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 1ms
+
+
+  
+SyntaxError (/home/mmoroney/Desktop/mortgagehippo_code_challenge/app/models/coin.rb:11: syntax error, unexpected tFID
+  def quatity_deposited(name, value, deposited?)
+                                               ^
+/home/mmoroney/Desktop/mortgagehippo_code_challenge/app/models/coin.rb:16: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/coin.rb:11: syntax error, unexpected tFID
+app/models/coin.rb:16: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/transactions_controller.rb:11:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:05:29 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 1ms
+
+
+  
+SyntaxError (/home/mmoroney/Desktop/mortgagehippo_code_challenge/app/models/coin.rb:11: syntax error, unexpected tFID
+  def quantity_deposited(name, value, deposited?)
+                                                ^
+/home/mmoroney/Desktop/mortgagehippo_code_challenge/app/models/coin.rb:17: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/coin.rb:11: syntax error, unexpected tFID
+app/models/coin.rb:17: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/transactions_controller.rb:11:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:05:39 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "deposit") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:05:39.866383"], ["updated_at", "2018-12-04 20:05:39.866383"], ["deposit", "t"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "t"], ["updated_at", "2018-12-04 20:05:39.874117"], ["id", 2]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 53ms (ActiveRecord: 12.9ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 3)):
+  
+app/models/coin.rb:11:in `quantity_deposited'
+app/controllers/transactions_controller.rb:20:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:06:04 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.8ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 34ms (Views: 2.5ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:06:28 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>3, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "deposit") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 3], ["user_id", 1], ["created_at", "2018-12-04 20:06:28.874851"], ["updated_at", "2018-12-04 20:06:28.874851"], ["deposit", "t"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "t"], ["updated_at", "2018-12-04 20:06:28.886628"], ["id", 3]]
+  [1m[35m (9.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 67ms (Views: 6.2ms | ActiveRecord: 21.1ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:08:16 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>3, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 3], ["user_id", 1], ["created_at", "2018-12-04 20:08:16.629881"], ["updated_at", "2018-12-04 20:08:16.629881"], ["withdrawal", "t"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 33ms (Views: 2.4ms | ActiveRecord: 7.6ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:09:58 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:09:58.170009"], ["updated_at", "2018-12-04 20:09:58.170009"], ["withdrawal", "t"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+Completed 500 Internal Server Error in 49ms (ActiveRecord: 8.9ms)
+
+
+  
+NoMethodError (undefined method `total_value' for #<Class:0x007f1ccd0761d8>):
+  
+app/controllers/transactions_controller.rb:30:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:10:42 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:10:42.279041"], ["updated_at", "2018-12-04 20:10:42.279041"], ["withdrawal", "t"]]
+  [1m[35m (7.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.4ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+Completed 500 Internal Server Error in 64ms (ActiveRecord: 13.0ms)
+
+
+  
+NoMethodError (undefined method `total_value' for #<Class:0x007f1cc84509c0>):
+  
+app/controllers/transactions_controller.rb:30:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:11:52 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:11:53.011589"], ["updated_at", "2018-12-04 20:11:53.011589"], ["withdrawal", "t"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 7.3ms)
+
+
+  
+NoMethodError (undefined method `total_value' for #<Class:0x007f1cc4070548>):
+  
+app/controllers/transactions_controller.rb:30:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:12:28 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:12:28.692333"], ["updated_at", "2018-12-04 20:12:28.692333"], ["withdrawal", "t"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+Completed 500 Internal Server Error in 59ms (ActiveRecord: 11.4ms)
+
+
+  
+NoMethodError (undefined method `total_value' for #<Class:0x007f1ccd0334f0>):
+  
+app/controllers/transactions_controller.rb:30:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:14:01 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.4ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:14:01.764235"], ["updated_at", "2018-12-04 20:14:01.764235"], ["withdrawal", "t"]]
+  [1m[35m (9.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.5ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 200 OK in 48ms (Views: 11.3ms | ActiveRecord: 12.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:14:22 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:14:22.192142"], ["updated_at", "2018-12-04 20:14:22.192142"], ["withdrawal", "t"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 35ms (Views: 3.1ms | ActiveRecord: 7.7ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:16:08 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:16:08.513782"], ["updated_at", "2018-12-04 20:16:08.513782"], ["withdrawal", "t"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+Completed 500 Internal Server Error in 66ms (ActiveRecord: 9.5ms)
+
+
+  
+NoMethodError (undefined method `quatity' for #<Coin:0x007f1cc422d318>
+Did you mean?  quantity):
+  
+app/controllers/transactions_controller.rb:31:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:16:19 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.4ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:16:19.153798"], ["updated_at", "2018-12-04 20:16:19.153798"], ["withdrawal", "t"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 7.6ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 2)):
+  
+app/models/coin.rb:5:in `quantity'
+app/controllers/transactions_controller.rb:31:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:17:03 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 2ms
+
+
+  
+SyntaxError (/home/mmoroney/Desktop/mortgagehippo_code_challenge/app/models/coin.rb:5: syntax error, unexpected keyword_self, expecting ')'
+  def quantity(self.name, self.value)
+                   ^
+/home/mmoroney/Desktop/mortgagehippo_code_challenge/app/models/coin.rb:5: syntax error, unexpected ')', expecting '='
+/home/mmoroney/Desktop/mortgagehippo_code_challenge/app/models/coin.rb:28: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/coin.rb:5: syntax error, unexpected keyword_self, expecting ')'
+app/models/coin.rb:5: syntax error, unexpected ')', expecting '='
+app/models/coin.rb:28: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/transactions_controller.rb:11:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:17:37 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.4ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:17:37.161015"], ["updated_at", "2018-12-04 20:17:37.161015"], ["withdrawal", "t"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ?[0m  [["name", "bitcoin"], ["value", 0]]
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+AdminMailer#four_coins_or_less: processed outbound mail in 5.5ms
+Completed 500 Internal Server Error in 252ms (ActiveRecord: 11.5ms)
+
+
+  
+NameError (undefined local variable or method `coins' for #<AdminMailer:0x007f1ccc772eb0>
+Did you mean?  coin
+               coins_url
+               @coin):
+  
+app/mailers/admin_mailer.rb:9:in `four_coins_or_less'
+app/controllers/transactions_controller.rb:37:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:18:28 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:18:28.237482"], ["updated_at", "2018-12-04 20:18:28.237482"], ["withdrawal", "t"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 9.7ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 3, expected 0)):
+  
+app/models/coin.rb:11:in `quantity_deposited'
+app/controllers/transactions_controller.rb:27:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:18:46 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:18:46.772870"], ["updated_at", "2018-12-04 20:18:46.772870"], ["withdrawal", "t"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ?[0m  [["name", "bitcoin"], ["value", 0]]
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+AdminMailer#four_coins_or_less: processed outbound mail in 3.1ms
+Completed 500 Internal Server Error in 66ms (ActiveRecord: 9.6ms)
+
+
+  
+NameError (undefined local variable or method `coins' for #<AdminMailer:0x0055c5e2ab2b58>
+Did you mean?  coin
+               coins_url
+               @coin):
+  
+app/mailers/admin_mailer.rb:9:in `four_coins_or_less'
+app/controllers/transactions_controller.rb:37:in `create'
+Started GET "/coins" for 127.0.0.1 at 2018-12-04 14:19:11 -0600
+Processing by CoinsController#index as */*
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+No serializer found for resource: #<Coin id: 1, name: "bitcoin", value: 0, deposited?: false, created_at: "2018-12-04 20:00:56", updated_at: "2018-12-04 20:00:56">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Coin::ActiveRecord_Relation (0.73ms)
+Completed 200 OK in 15ms (Views: 14.1ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:23:28 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:23:28.380736"], ["updated_at", "2018-12-04 20:23:28.380736"], ["withdrawal", "t"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (role = 'admin')[0m
+AdminMailer#four_coins_or_less: processed outbound mail in 9.3ms
+Completed 500 Internal Server Error in 59ms (ActiveRecord: 8.5ms)
+
+
+  
+ActionView::MissingTemplate (Missing template admin_mailer/four_coins_or_less with "mailer". Searched in:
+  * "admin_mailer"
+):
+  
+app/mailers/admin_mailer.rb:10:in `four_coins_or_less'
+app/controllers/transactions_controller.rb:35:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:28:27 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:28:27.226137"], ["updated_at", "2018-12-04 20:28:27.226137"], ["withdrawal", "t"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (role = 'admin')[0m
+  Rendering admin_mailer/four_coins_or_less.html.erb within layouts/mailer
+  Rendered admin_mailer/four_coins_or_less.html.erb within layouts/mailer (0.5ms)
+AdminMailer#four_coins_or_less: processed outbound mail in 215.7ms
+Sent mail to  (5.4ms)
+Date: Tue, 04 Dec 2018 14:28:27 -0600
+From: from@example.com
+Message-ID: <5c06e36b718e5_1c932ae2f0d5afe0532ed@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: bitcoin has four or fewer coins available to withdraw
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1> bitcoin has only  available for withdrawal.</p>
+<p>The total balance of all coins is $0</p>
+  </body>
+</html>
+
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 270ms (Views: 3.0ms | ActiveRecord: 10.1ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:29:01 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.7ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:29:01.553664"], ["updated_at", "2018-12-04 20:29:01.553664"], ["withdrawal", "t"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (role = 'admin')[0m
+  Rendering admin_mailer/four_coins_or_less.html.erb within layouts/mailer
+  Rendered admin_mailer/four_coins_or_less.html.erb within layouts/mailer (0.4ms)
+AdminMailer#four_coins_or_less: processed outbound mail in 8.7ms
+Sent mail to  (3.4ms)
+Date: Tue, 04 Dec 2018 14:29:01 -0600
+From: from@example.com
+Message-ID: <5c06e38d8f132_1c932ae2f0d5ab6c5330@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: bitcoin has four or fewer coins available to withdraw
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1> bitcoin has only  available for withdrawal.</p>
+<p>The total balance of all coins is $0</p>
+  </body>
+</html>
+
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 62ms (Views: 2.3ms | ActiveRecord: 8.7ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-12-04 14:29:30 -0600
+Processing by CoinsController#index as */*
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+No serializer found for resource: #<Coin id: 1, name: "bitcoin", value: 0, deposited?: false, created_at: "2018-12-04 20:00:56", updated_at: "2018-12-04 20:00:56">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Coin::ActiveRecord_Relation (1.83ms)
+Completed 200 OK in 29ms (Views: 26.1ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:30:04 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:30:04.811831"], ["updated_at", "2018-12-04 20:30:04.811831"], ["withdrawal", "t"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (role = 'admin')[0m
+  Rendering admin_mailer/four_coins_or_less.html.erb within layouts/mailer
+  Rendered admin_mailer/four_coins_or_less.html.erb within layouts/mailer (0.4ms)
+AdminMailer#four_coins_or_less: processed outbound mail in 9.2ms
+Sent mail to  (1.2ms)
+Date: Tue, 04 Dec 2018 14:30:04 -0600
+From: from@example.com
+Message-ID: <5c06e3ccccba3_1c932ae2f0d5acc053473@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: bitcoin has four or fewer coins available to withdraw
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1> bitcoin has only  available for withdrawal.</p>
+<p>The total balance of all coins is $0</p>
+  </body>
+</html>
+
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 52ms (Views: 2.7ms | ActiveRecord: 8.5ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:30:47 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:30:47.967285"], ["updated_at", "2018-12-04 20:30:47.967285"], ["withdrawal", "t"]]
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (role = 'admin')[0m
+  Rendering admin_mailer/four_coins_or_less.html.erb within layouts/mailer
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  Rendered admin_mailer/four_coins_or_less.html.erb within layouts/mailer (1.6ms)
+AdminMailer#four_coins_or_less: processed outbound mail in 10.4ms
+Sent mail to  (1.6ms)
+Date: Tue, 04 Dec 2018 14:30:47 -0600
+From: from@example.com
+Message-ID: <5c06e3f7f1bf9_1c932ae2f0d5aa2c535d5@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: bitcoin has four or fewer coins available to withdraw
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1> bitcoin has only 2 available for withdrawal.</p>
+<p>The total balance of all coins is $0</p>
+  </body>
+</html>
+
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 200 OK in 28ms (Views: 0.6ms | ActiveRecord: 6.1ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:31:59 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:31:59.077538"], ["updated_at", "2018-12-04 20:31:59.077538"], ["withdrawal", "t"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (1.4ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.5ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 8.0ms)
+
+
+  
+SyntaxError (/home/mmoroney/Desktop/mortgagehippo_code_challenge/app/mailers/admin_mailer.rb:7: formal argument cannot be an instance variable
+  def four_coins_or_less(users, @coin, @coin_total)
+                                     ^
+/home/mmoroney/Desktop/mortgagehippo_code_challenge/app/mailers/admin_mailer.rb:7: formal argument cannot be an instance variable
+  def four_coins_or_less(users, @coin, @coin_total)
+                                                  ^):
+  
+app/mailers/admin_mailer.rb:7: formal argument cannot be an instance variable
+app/mailers/admin_mailer.rb:7: formal argument cannot be an instance variable
+app/controllers/transactions_controller.rb:33:in `create'
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:32:11 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:32:11.569212"], ["updated_at", "2018-12-04 20:32:11.569212"], ["withdrawal", "t"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (role = 'admin')[0m
+  Rendering admin_mailer/four_coins_or_less.html.erb within layouts/mailer
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  Rendered admin_mailer/four_coins_or_less.html.erb within layouts/mailer (1.0ms)
+AdminMailer#four_coins_or_less: processed outbound mail in 6.6ms
+Sent mail to  (1.6ms)
+Date: Tue, 04 Dec 2018 14:32:11 -0600
+From: from@example.com
+Message-ID: <5c06e44b914ac_1c932ae2f0d5acc053666@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: bitcoin has four or fewer coins available to withdraw
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1> bitcoin has only 2 coins currently available for withdrawal.</p>
+<p>The total balance of all coins is $0</p>
+  </body>
+</html>
+
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 53ms (Views: 3.5ms | ActiveRecord: 7.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 14:32:59 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 20:32:59.863127"], ["updated_at", "2018-12-04 20:32:59.863127"], ["withdrawal", "t"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (role = 'admin')[0m
+  Rendering admin_mailer/four_coins_or_less.html.erb within layouts/mailer
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  Rendered admin_mailer/four_coins_or_less.html.erb within layouts/mailer (1.3ms)
+AdminMailer#four_coins_or_less: processed outbound mail in 8.1ms
+Sent mail to  (1.9ms)
+Date: Tue, 04 Dec 2018 14:32:59 -0600
+From: from@example.com
+Message-ID: <5c06e47bd9866_1c932ae2f0d5aa2c537e2@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: bitcoin has four or fewer coins available to withdraw
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1> bitcoin has only 2 coins currently available for withdrawal.</p>
+<p>The total balance of all coins is $0</p>
+  </body>
+</html>
+
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "f"], ["updated_at", "2018-12-04 20:32:59.893327"], ["id", 2]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.3ms)
+Completed 200 OK in 67ms (Views: 3.5ms | ActiveRecord: 14.0ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-12-04 14:33:09 -0600
+Processing by CoinsController#index as */*
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+No serializer found for resource: #<Coin id: 1, name: "bitcoin", value: 0, deposited?: false, created_at: "2018-12-04 20:00:56", updated_at: "2018-12-04 20:00:56">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Coin::ActiveRecord_Relation (0.94ms)
+Completed 200 OK in 10ms (Views: 9.4ms | ActiveRecord: 0.2ms)
+
+

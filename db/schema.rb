@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20181129213612) do
   create_table "coins", force: :cascade do |t|
     t.string "name", null: false
     t.integer "value", null: false
+    t.boolean "deposited?", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "deposited?", default: false
   end
 
   create_table "transactions", force: :cascade do |t|

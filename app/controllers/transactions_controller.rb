@@ -24,7 +24,16 @@ class TransactionsController < ApplicationController
     else
       if @coin.deposited? == true
         if @transaction.save
-          @coin.update(deposited?: false)
+          if @coin.quantity_deposited <= 4
+
+            @admins = User.where("role = ?", "admin")
+
+            @coin_total = Coin.total_value
+
+            AdminMailer.four_coins_or_less(@admins, @coin, @coin_total).deliver
+
+            @coin.update(deposited?: false)
+          end
           render json: { msg: "your coin has been withdrawn" }          
         end
       else
