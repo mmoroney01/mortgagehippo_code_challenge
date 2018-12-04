@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
+      AdminMailer.welcome_email(@user).deliver
       render json: {status: 200, msg: 'User was created.'}
     end
   end
