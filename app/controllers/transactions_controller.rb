@@ -12,14 +12,24 @@ class TransactionsController < ApplicationController
 
     @transaction = Transaction.new(transaction_params)
 
-    if @transaction.save
-      @coin.update(deposited?: true) if @transaction.deposit == true
-      @coin.update(deposited?: false) if @transaction.withdrawal == true
-
-      render json: { msg: "your coin has been deposited" } if @transaction.deposit == true
-      render json: { msg: "your coin has been withdrawn" } if @transaction.withdrawal == true
+    if @transaction.deposit == true
+      if @coin.deposited? == false
+        if @transaction.save
+          @coin.update(deposited?: true)
+          render json: { msg: "your coin has been deposited" }          
+        end
+      else
+        render json: { msg: "your coin is already deposited" }
+      end
     else
-      render json: { msg: "your coin could not be deposited" }
+      if @coin.deposited? == true
+        if @transaction.save
+          @coin.update(deposited?: false)
+          render json: { msg: "your coin has been withdrawn" }          
+        end
+      else
+        render json: { msg: "your coin is not deposited" }
+      end
     end
   end
 
