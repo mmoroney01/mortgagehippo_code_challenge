@@ -41,11 +41,11 @@ class CoinsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @coin = Coin.find(params[:id])
     
     if @coin
-      @coin.delete
+      @coin.destroy
       render json: { msg: 'Coin deleted.' }
     else
       render json: { msg: 'This coin does not exist.'}
@@ -62,5 +62,11 @@ class CoinsController < ApplicationController
     end
 
     render json: @total
+  end
+
+  private
+
+  def coin_params
+    params.require(:coin).permit(:value, :name)
   end
 end
