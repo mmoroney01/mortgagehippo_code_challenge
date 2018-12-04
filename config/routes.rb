@@ -11,22 +11,11 @@ Rails.application.routes.draw do
   post   '/users/create'   => 'users#create'
   patch  '/user/:id'       => 'users#update'
   delete '/user/:id'       => 'users#destroy'
-
   get    '/users/transactions' => 'users#transactions'
 
-
   get '/coins/total' => 'coins#total_value'
+  resources :coins, only: [:index, :show, :create, :update, :destroy]
 
-  # resources :coins, only: [:index, :show, :create, :destroy]
-
-  get '/coins' => 'coins#index'
-  get '/coins/:id' => 'coins#show'
-  put '/coins/:id' => 'coins#update'
-
-  post '/coins/:id' => 'coins#coin_updated'
-  post '/coins' => 'coins#create'
-
-  delete '/coins/:id' => 'coins#delete'
 
   get '/transactions' => "transactions#see_all"
 
