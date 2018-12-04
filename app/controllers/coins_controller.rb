@@ -1,13 +1,11 @@
 class CoinsController < ApplicationController
   before_action :authenticate_user
+  before_action :find_coin, only: [:show, :update, :destroy]
   
   def index
     @coins = Coin.all
-    if @coins
-      render json: @coins
-    else
-      render json: { msg: "There are no coins."}
-    end
+
+    render json: @coins
   end
 
   def create
@@ -21,20 +19,11 @@ class CoinsController < ApplicationController
   end
 
   def show
-    @coin = Coin.find(params[:id])
-
-    if @coin
-      render json: @coin
-    else
-      render json: { msg: "This coin does not exist."}
-    end
+    render json: @coin
   end
 
   def update
-    @coin = Coin.find(params[:id])
-
-    if @coin
-      @coin.update(:name => params[:name], :value => params[:value].to_i)
+    if @coin.update(coin_params)
       render json: { msg: "Coin updated."}
     else
       render json: { msg: "This coin does not exist."}
@@ -42,10 +31,7 @@ class CoinsController < ApplicationController
   end
 
   def destroy
-    @coin = Coin.find(params[:id])
-    
-    if @coin
-      @coin.destroy
+    if @coin.destroy
       render json: { msg: 'Coin deleted.' }
     else
       render json: { msg: 'This coin does not exist.'}
@@ -65,6 +51,10 @@ class CoinsController < ApplicationController
   end
 
   private
+
+  def find_coin
+    @coin = Coin.find(params[:id])
+  end
 
   def coin_params
     params.require(:coin).permit(:value, :name)
