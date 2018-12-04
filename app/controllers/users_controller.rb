@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   end
 
   def transactions
-    @transactions = Transaction.find_by(user_id: current_user.id)
+    @transactions = Transaction.where(user_id: current_user.id)
 
     render json: @transactions
   end

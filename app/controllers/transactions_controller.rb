@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  # before_action :authenticate_user
+  before_action :authenticate_user
 
   def index
   	@transactions = Transaction.all
@@ -9,7 +9,6 @@ class TransactionsController < ApplicationController
 
   def create
     @coin = Coin.find(params[:transaction][:coin_id])
-
     @transaction = Transaction.new(transaction_params)
 
     if @transaction.deposit == true

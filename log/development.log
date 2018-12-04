@@ -8630,3 +8630,445 @@ No serializer found for resource: #<Coin id: 1, name: "bitcoin", value: 0, depos
 Completed 200 OK in 10ms (Views: 9.4ms | ActiveRecord: 0.2ms)
 
 
+Started GET "/" for 127.0.0.1 at 2018-12-04 15:14:27 -0600
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.47ms)
+Completed 200 OK in 15ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/create" for 127.0.0.1 at 2018-12-04 15:14:34 -0600
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"email"=>"james@bit.com", "password"=>"[FILTERED]", "username"=>"fishfingers"}}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "james@bit.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "fishfingers"], ["LIMIT", 1]]
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "fishfingers"], ["email", "james@bit.com"], ["password_digest", "$2a$10$ASSWJqKmV7bIBvDNkh3eOeLJiH21.yoESfoQSaYxH/s5JdBgr/JlG"], ["created_at", "2018-12-04 21:14:34.929619"], ["updated_at", "2018-12-04 21:14:34.929619"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 200 OK in 105ms (Views: 3.4ms | ActiveRecord: 8.9ms)
+
+
+Started GET "/users/current" for 127.0.0.1 at 2018-12-04 15:15:07 -0600
+Processing by UsersController#current as */*
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/current" for 127.0.0.1 at 2018-12-04 15:15:31 -0600
+Processing by UsersController#current as */*
+Completed 500 Internal Server Error in 2ms
+
+
+  
+NoMethodError (undefined method `update!' for nil:NilClass):
+  
+app/controllers/users_controller.rb:11:in `current'
+Started POST "/user_token" for 127.0.0.1 at 2018-12-04 15:16:56 -0600
+  
+ArgumentError (Before process_action callback :verify_authenticity_token has not been defined):
+  
+app/controllers/user_token_controller.rb:3:in `<class:UserTokenController>'
+app/controllers/user_token_controller.rb:1:in `<top (required)>'
+Started POST "/user_token" for 127.0.0.1 at 2018-12-04 15:17:13 -0600
+  
+ArgumentError (Before process_action callback :verify_authenticity_token has not been defined):
+  
+app/controllers/user_token_controller.rb:3:in `<class:UserTokenController>'
+app/controllers/user_token_controller.rb:1:in `<top (required)>'
+Started POST "/user_token" for 127.0.0.1 at 2018-12-04 15:17:30 -0600
+Processing by UserTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"james@bit.com", "username"=>"fishfingers"}, "user_token"=>{"auth"=>{"email"=>"james@bit.com", "username"=>"fishfingers"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "james@bit.com"], ["LIMIT", 1]]
+Unpermitted parameter: :username
+Completed 404 Not Found in 86ms (ActiveRecord: 1.4ms)
+
+
+Started POST "/user_token" for 127.0.0.1 at 2018-12-04 15:18:00 -0600
+Processing by UserTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"james@bit.com", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"email"=>"james@bit.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "james@bit.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Knock::AuthToken (0.21ms)
+Completed 201 Created in 93ms (Views: 6.8ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/users/current" for 127.0.0.1 at 2018-12-04 15:18:42 -0600
+Processing by UsersController#current as */*
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/auth?=&=" for 127.0.0.1 at 2018-12-04 15:20:21 -0600
+Processing by HomeController#auth as */*
+  Parameters: {"home"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 200 OK in 29ms (Views: 6.5ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users/current" for 127.0.0.1 at 2018-12-04 15:20:29 -0600
+Processing by UsersController#current as */*
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-12-04 15:21:19 -0600
+Processing by CoinsController#index as */*
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-12-04 15:21:56 -0600
+Processing by CoinsController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+No serializer found for resource: #<Coin id: 1, name: "bitcoin", value: 0, deposited?: false, created_at: "2018-12-04 20:00:56", updated_at: "2018-12-04 20:00:56">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Coin::ActiveRecord_Relation (1.88ms)
+Completed 200 OK in 62ms (Views: 31.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-04 15:22:09 -0600
+Processing by HomeController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 200 OK in 9ms (Views: 5.2ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-12-04 15:22:12 -0600
+Processing by CoinsController#index as HTML
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 3ms
+
+
+Started GET "/users/current" for 127.0.0.1 at 2018-12-04 15:23:35 -0600
+Processing by UsersController#current as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? AND ("users"."id" != ?) LIMIT ?[0m  [["email", "james@bit.com"], ["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? AND ("users"."id" != ?) LIMIT ?[0m  [["username", "fishfingers"], ["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "users" SET "last_login" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_login", "2018-12-04 21:23:35.614230"], ["updated_at", "2018-12-04 21:23:35.620390"], ["id", 1]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.84ms)
+Completed 200 OK in 43ms (Views: 10.2ms | ActiveRecord: 6.9ms)
+
+
+Started GET "/users/transactions" for 127.0.0.1 at 2018-12-04 15:23:59 -0600
+Processing by UsersController#transactions as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT  "transactions".* FROM "transactions" WHERE "transactions"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Transaction (0.32ms)
+Completed 200 OK in 31ms (Views: 5.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-12-04 15:24:28 -0600
+Processing by TransactionsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+No serializer found for resource: #<Transaction id: 1, coin_id: 2, user_id: 1, created_at: "2018-12-04 20:05:39", updated_at: "2018-12-04 20:05:39", deposit: true, withdrawal: false>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Transaction::ActiveRecord_Relation (4.51ms)
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/transactions" for 127.0.0.1 at 2018-12-04 15:24:45 -0600
+Processing by UsersController#transactions as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = ?[0m  [["user_id", 1]]
+No serializer found for resource: #<Transaction id: 1, coin_id: 2, user_id: 1, created_at: "2018-12-04 20:05:39", updated_at: "2018-12-04 20:05:39", deposit: true, withdrawal: false>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Transaction::ActiveRecord_Relation (2.52ms)
+Completed 200 OK in 41ms (Views: 19.0ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 15:26:38 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "deposit") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 21:26:38.184654"], ["updated_at", "2018-12-04 21:26:38.184654"], ["deposit", "t"]]
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "t"], ["updated_at", "2018-12-04 21:26:38.191379"], ["id", 2]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 71ms (Views: 2.6ms | ActiveRecord: 13.2ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 15:28:11 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.29ms)
+Completed 200 OK in 50ms (Views: 8.8ms | ActiveRecord: 4.1ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 15:28:39 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 33ms (Views: 3.5ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/users/tra" for 127.0.0.1 at 2018-12-04 15:30:09 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/users/tra"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/users/transactions" for 127.0.0.1 at 2018-12-04 15:30:13 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/users/transactions"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/users/transactions" for 127.0.0.1 at 2018-12-04 15:30:17 -0600
+Processing by UsersController#transactions as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}, "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = ?[0m  [["user_id", 1]]
+No serializer found for resource: #<Transaction id: 1, coin_id: 2, user_id: 1, created_at: "2018-12-04 20:05:39", updated_at: "2018-12-04 20:05:39", deposit: true, withdrawal: false>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Transaction::ActiveRecord_Relation (6.35ms)
+Completed 200 OK in 57ms (Views: 33.0ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 15:30:37 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 200 OK in 18ms (Views: 2.1ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 15:30:38 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 15:30:39 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/transactions" for 127.0.0.1 at 2018-12-04 15:30:48 -0600
+Processing by UsersController#transactions as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}, "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = ?[0m  [["user_id", 1]]
+No serializer found for resource: #<Transaction id: 1, coin_id: 2, user_id: 1, created_at: "2018-12-04 20:05:39", updated_at: "2018-12-04 20:05:39", deposit: true, withdrawal: false>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Transaction::ActiveRecord_Relation (4.38ms)
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2018-12-04 15:31:06 -0600
+Processing by TransactionsController#index as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions"[0m
+No serializer found for resource: #<Transaction id: 1, coin_id: 2, user_id: 1, created_at: "2018-12-04 20:05:39", updated_at: "2018-12-04 20:05:39", deposit: true, withdrawal: false>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Transaction::ActiveRecord_Relation (3.39ms)
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 15:31:50 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 21:31:50.182106"], ["updated_at", "2018-12-04 21:31:50.182106"], ["withdrawal", "t"]]
+  [1m[35m (10.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.8ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (role = 'admin')[0m
+  Rendering admin_mailer/four_coins_or_less.html.erb within layouts/mailer
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  Rendered admin_mailer/four_coins_or_less.html.erb within layouts/mailer (2.0ms)
+AdminMailer#four_coins_or_less: processed outbound mail in 271.6ms
+Sent mail to  (6.3ms)
+Date: Tue, 04 Dec 2018 15:31:50 -0600
+From: from@example.com
+Message-ID: <5c06f246a08f6_a2b2ac99beeaedc2377d@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: bitcoin has four or fewer coins available to withdraw
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1> bitcoin has only 2 coins currently available for withdrawal.</p>
+<p>The total balance of all coins is $0</p>
+  </body>
+</html>
+
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "f"], ["updated_at", "2018-12-04 21:31:50.660609"], ["id", 2]]
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 200 OK in 542ms (Views: 6.9ms | ActiveRecord: 20.1ms)
+
+
+Started GET "/users/transactions" for 127.0.0.1 at 2018-12-04 15:31:58 -0600
+Processing by UsersController#transactions as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}, "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = ?[0m  [["user_id", 1]]
+No serializer found for resource: #<Transaction id: 1, coin_id: 2, user_id: 1, created_at: "2018-12-04 20:05:39", updated_at: "2018-12-04 20:05:39", deposit: true, withdrawal: false>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Transaction::ActiveRecord_Relation (4.75ms)
+Completed 200 OK in 18ms (Views: 15.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 15:33:55 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "deposit") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 21:33:55.492501"], ["updated_at", "2018-12-04 21:33:55.492501"], ["deposit", "t"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "t"], ["updated_at", "2018-12-04 21:33:55.504263"], ["id", 2]]
+  [1m[35m (9.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.6ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 200 OK in 99ms (Views: 5.0ms | ActiveRecord: 22.8ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-04 15:34:42 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>2, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ?[0m  [["name", "bitcoin"], ["value", 0]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "created_at", "updated_at", "withdrawal") VALUES (?, ?, ?, ?, ?)[0m  [["coin_id", 2], ["user_id", 1], ["created_at", "2018-12-04 21:34:42.107558"], ["updated_at", "2018-12-04 21:34:42.107558"], ["withdrawal", "t"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ?[0m  [["name", "bitcoin"], ["value", 0]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.1ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (role = 'admin')[0m
+  Rendering admin_mailer/four_coins_or_less.html.erb within layouts/mailer
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = ? AND "coins"."value" = ? AND "coins"."deposited?" = ?[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  Rendered admin_mailer/four_coins_or_less.html.erb within layouts/mailer (1.8ms)
+AdminMailer#four_coins_or_less: processed outbound mail in 8.7ms
+Sent mail to  (2.2ms)
+Date: Tue, 04 Dec 2018 15:34:42 -0600
+From: from@example.com
+Message-ID: <5c06f2f2206c9_a2b2ac99beeaedc23829@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: bitcoin has four or fewer coins available to withdraw
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1> bitcoin has only 2 coins currently available for withdrawal.</p>
+<p>The total balance of all coins is $0</p>
+  </body>
+</html>
+
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = ?, "updated_at" = ? WHERE "coins"."id" = ?[0m  [["deposited?", "f"], ["updated_at", "2018-12-04 21:34:42.134202"], ["id", 2]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 78ms (Views: 3.8ms | ActiveRecord: 13.8ms)
+
+
