@@ -10857,3 +10857,187 @@ Filter chain halted as :authenticate_user rendered or redirected
 Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
 
 
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (118.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "db/coin_machine_api_development"[0m
+  [1m[35m (114.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "db/coin_machine_api_test"[0m
+  [1m[35m (40.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (27.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5435060070456736965)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCoins (20181115171704)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.0ms)[0m  [1m[35mCREATE TABLE "coins" ("id" bigserial primary key, "name" character varying NOT NULL, "value" integer NOT NULL, "deposited?" boolean DEFAULT 'f', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181115171704"]]
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20181128013413)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying NOT NULL, "email" character varying NOT NULL, "password_digest" character varying, "role" character varying DEFAULT 'user' NOT NULL, "last_login" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181128013413"]]
+  [1m[35m (6.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTransactions (20181204221955)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" bigserial primary key, "coin_id" integer NOT NULL, "user_id" integer NOT NULL, "deposit" boolean DEFAULT 'f' NOT NULL, "withdrawal" boolean DEFAULT 'f' NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181204221955"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-05 17:58:14.874234"], ["updated_at", "2018-12-05 17:58:14.874234"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5435060070456736965)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/auth" for 127.0.0.1 at 2018-12-05 11:58:33 -0600
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#auth as */*
+  Parameters: {"home"=>{}}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/users/create" for 127.0.0.1 at 2018-12-05 11:58:39 -0600
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"email"=>"james@bitdfs.coin", "password"=>"[FILTERED]", "username"=>"fisasdfsssasdfht"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "james@bitdfs.coin"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "fisasdfsssasdfht"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "fisasdfsssasdfht"], ["email", "james@bitdfs.coin"], ["password_digest", "$2a$10$G6GsUZJBFr9/mw.sqhDXpu7Yb4zyIVJ8XNuNmWeUDys698/HCbdbi"], ["created_at", "2018-12-05 17:58:39.976925"], ["updated_at", "2018-12-05 17:58:39.976925"]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  Rendering admin_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered admin_mailer/welcome_email.html.erb within layouts/mailer (0.7ms)
+AdminMailer#welcome_email: processed outbound mail in 163.2ms
+Sent mail to james@bitdfs.coin (6.4ms)
+Date: Wed, 05 Dec 2018 11:58:40 -0600
+From: from@example.com
+To: james@bitdfs.coin
+Message-ID: <5c0811d0490ae_1bb02b0b89bf4ba860425@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: Welcome to the Coin Machine API!
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Welcome to Coin Machine API, fisasdfsssasdfht!</h1>
+  </body>
+</html>
+
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 200 OK in 448ms (Views: 7.4ms | ActiveRecord: 15.6ms)
+
+
+Started POST "/user_token" for 127.0.0.1 at 2018-12-05 11:58:42 -0600
+Processing by UserTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"james@bitdfs.coin", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"email"=>"james@bitdfs.coin", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "james@bitdfs.coin"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Knock::AuthToken (0.07ms)
+Completed 201 Created in 74ms (Views: 2.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/auth" for 127.0.0.1 at 2018-12-05 11:58:54 -0600
+Processing by HomeController#auth as */*
+  Parameters: {"home"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/coins" for 127.0.0.1 at 2018-12-05 11:59:01 -0600
+Processing by CoinsController#index as */*
+  Parameters: {"coin"=>{}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.5ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.18ms)
+Completed 200 OK in 17ms (Views: 12.6ms | ActiveRecord: 3.5ms)
+
+
+Started POST "/coins" for 127.0.0.1 at 2018-12-05 11:59:45 -0600
+Processing by CoinsController#create as */*
+  Parameters: {"coin"=>{"name"=>"bitcoin", "value"=>"0"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "coins" ("name", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "bitcoin"], ["value", 0], ["created_at", "2018-12-05 17:59:45.244403"], ["updated_at", "2018-12-05 17:59:45.244403"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Coin (0.4ms)
+Completed 200 OK in 23ms (Views: 6.4ms | ActiveRecord: 5.7ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-05 12:00:16 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>1, "user_id"=>1, "deposit"=>true, "withdrawal"=>false}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "deposit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["coin_id", 1], ["user_id", 1], ["deposit", "t"], ["created_at", "2018-12-05 18:00:16.765605"], ["updated_at", "2018-12-05 18:00:16.765605"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = $1, "updated_at" = $2 WHERE "coins"."id" = $3[0m  [["deposited?", "t"], ["updated_at", "2018-12-05 18:00:16.770599"], ["id", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.22ms)
+Completed 200 OK in 40ms (Views: 1.4ms | ActiveRecord: 8.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2018-12-05 12:00:23 -0600
+Processing by TransactionsController#create as */*
+  Parameters: {"transaction"=>{"coin_id"=>1, "user_id"=>1, "deposit"=>false, "withdrawal"=>true}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT  "coins".* FROM "coins" WHERE "coins"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "transactions" ("coin_id", "user_id", "withdrawal", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["coin_id", 1], ["user_id", 1], ["withdrawal", "t"], ["created_at", "2018-12-05 18:00:23.133162"], ["updated_at", "2018-12-05 18:00:23.133162"]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCoin Load (1.4ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = $1 AND "coins"."value" = $2 AND "coins"."deposited?" = $3[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (role = 'admin')[0m
+  Rendering admin_mailer/four_coins_or_less.html.erb within layouts/mailer
+  [1m[36mCACHE Coin Load (0.0ms)[0m  [1m[34mSELECT "coins".* FROM "coins" WHERE "coins"."name" = $1 AND "coins"."value" = $2 AND "coins"."deposited?" = $3[0m  [["name", "bitcoin"], ["value", 0], ["deposited?", "t"]]
+  Rendered admin_mailer/four_coins_or_less.html.erb within layouts/mailer (1.4ms)
+AdminMailer#four_coins_or_less: processed outbound mail in 10.5ms
+Sent mail to  (1.7ms)
+Date: Wed, 05 Dec 2018 12:00:23 -0600
+From: from@example.com
+Message-ID: <5c08123725968_1bb02b0b89bf830c605f1@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: bitcoin has four or fewer coins available to withdraw
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1> bitcoin has only 1 coins currently available for withdrawal.</p>
+<p>The total balance of all coins is $0</p>
+  </body>
+</html>
+
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "coins" SET "deposited?" = $1, "updated_at" = $2 WHERE "coins"."id" = $3[0m  [["deposited?", "f"], ["updated_at", "2018-12-05 18:00:23.156031"], ["id", 1]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 36ms (Views: 0.6ms | ActiveRecord: 7.3ms)
+
+
