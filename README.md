@@ -3,7 +3,7 @@
 
 Heroku URL: https://cryptic-gorge-92449.herokuapp.com/
 
-All routes can be tested using Postman. Precede each path with the Heroku URL, or to test locally run rails s in your command line and precede each path with localhost:3000. In either case, under headers for each route put [key: content-type, value: application/json].
+While I could not test routes in browser without disabling user authentication, all routes can be tested using Postman. Precede each path with the Heroku URL, or to test locally run rails s in your command line and precede each path with localhost:3000. In either case, under headers for each route put [key: content-type, value: application/json].
 
 <h3>User Creation</h3>
 
@@ -37,9 +37,9 @@ in the body of POST /user_token.
 
 To log in, under headers put [key: authorization, value: Bearer #{token}] of GET /auth. These headers will be needed for any action that is forbidden to users without tokens.
 
-<h3>Creating a Coin</h3>
+<h3>Using Coins</h3>
 
-To create a coin, put a json coin object like
+To use coin routes, put json coin objects like
 
 {
   "coin":{
@@ -48,11 +48,11 @@ To create a coin, put a json coin object like
   }
 }
 
-in the body of POST /coins.
+in the body of the coin route.
 
-<h3>Creating a Transaction</h3>
+<h3>Using Transactions</h3>
 
-To create a transaction, put a json transaction object like
+To to use transaction routes, put json transaction objects like
 
 {
   "transaction":{
@@ -63,9 +63,9 @@ To create a transaction, put a json transaction object like
   }
 }
 
-in the body of POST /transactions.
+in the body of the transaction route. 
 
-<h1>Routes</h1>
+<h1>RESTful Routes</h1>
 
 Routing for Users:
 
@@ -168,10 +168,10 @@ Routing for Transactions:
 <table>
   <thead>
   	<tr>
-  	  <td>HTTP Request Type</td>
-  	  <td>URL Path</td>
-  	  <td>Action</td>
-  	  <td>Description</td>
+  	  <th>HTTP Request Type</th>
+  	  <th>URL Path</th>
+  	  <th>Action</th>
+  	  <th>Description</th>
   	</tr>
   </thead>
   <tbody>
