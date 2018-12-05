@@ -16,7 +16,7 @@ To make a user, put a json user object like
   }
 }
 
-in the body OF ROUTE??.
+in the body of POST /users/create.
 
 To get a token, put a json auth object like
 
@@ -27,9 +27,9 @@ To get a token, put a json auth object like
   }
 }
 
-in the body OF ROUTE??.
+in the body of POST /user_token.
 
-To log in, under headers put [key: authorization, value: Bearer #{token}] OF ROUTE??
+To log in, under headers put [key: authorization, value: Bearer #{token}] of GET /auth.
 
 
 
@@ -49,34 +49,34 @@ Routing for Users:
   </thead>
   <tbody>
     <tr>
-      <th>GET</th>
-      <th>/users</th>
-      <th>Index</th>
-      <th>Informs that you are logged in</th>
+      <td>GET</td>
+      <td>/users</td>
+      <td>Index</td>
+      <td>Informs that you are logged in</td>
     </tr>
     <tr>
-      <th>GET</th>
-      <th>/users/transactions</th>
-      <th>Transactions</th>
-      <th>See all transactions associated with a user</th>
+      <td>GET</td>
+      <td>/users/transactions</td>
+      <td>Transactions</td>
+      <td>See all transactions associated with a user</td>
     </tr>
     <tr>
-      <th>POST</th>
-      <th>/users</th>
-      <th>Create</th>
-      <th>Create a user. Will send a welcome email if created successfully.</th>
+      <td>POST</td>
+      <td>/users</td>
+      <td>Create</td>
+      <td>Create a user. Will send a welcome email if created successfully.</td>
     </tr>
     <tr>
-      <th>PUT</th>
-      <th>/user/:id</th>
-      <th>Update</th>
-      <th>Update a user</th>
+      <td>PUT</td>
+      <td>/user/:id</td>
+      <td>Update</td>
+      <td>Update a user</td>
     </tr>
     <tr>
-      <th>DELETE</th>
-      <th>/user/:id</th>
-      <th>Destroy</th>
-      <th>Destroy a user</th>
+      <td>DELETE</td>
+      <td>/user/:id</td>
+      <td>Destroy</td>
+      <td>Destroy a user</td>
     </tr>
   </tbody>
 </table>
