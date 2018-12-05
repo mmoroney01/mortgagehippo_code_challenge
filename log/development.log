@@ -11168,3 +11168,11 @@ Content-Transfer-Encoding: 7bit
 Completed 200 OK in 90ms (Views: 0.5ms | ActiveRecord: 3.3ms)
 
 
+Started POST "/user_token" for 127.0.0.1 at 2018-12-05 14:29:23 -0600
+Processing by UserTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"gary@bit.coin", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"email"=>"gary@bit.coin", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "gary@bit.coin"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Knock::AuthToken (0.12ms)
+Completed 201 Created in 78ms (Views: 3.7ms | ActiveRecord: 0.5ms)
+
+
