@@ -3,7 +3,9 @@
 
 Heroku URL: https://cryptic-gorge-92449.herokuapp.com/
 
-While I could not test routes in browser without disabling user authentication, all routes can be tested using Postman. Precede each path with the Heroku URL, or to test locally run rails s in your command line and precede each path with localhost:3000. In either case, under headers for each route put [key: content-type, value: application/json].
+While I could not test routes in browser without disabling user authentication, all routes can be tested using Postman. https://www.getpostman.com/ 
+
+Precede each path with the Heroku URL, or to test locally run rails s in your command line and precede each path with localhost:3000. In either case, under headers for each route put [key: content-type, value: application/json].
 
 <h3>User Creation</h3>
 
