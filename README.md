@@ -5,6 +5,8 @@ Heroku URL: https://cryptic-gorge-92449.herokuapp.com/
 
 All routes can be tested using Postman; under headers put [key: content-type, value: application/json].
 
+<h3>User Creation</h3>
+
 To make a user, put a json user object like
 
 {
@@ -18,6 +20,8 @@ To make a user, put a json user object like
 
 in the body of POST /users/create.
 
+<h3>Token Generation</h3>
+
 To get a token, put a json auth object like
 
 {
@@ -29,7 +33,9 @@ To get a token, put a json auth object like
 
 in the body of POST /user_token.
 
-To log in, under headers put [key: authorization, value: Bearer #{token}] of GET /auth.
+<h3>Authorization</h3>
+
+To log in, under headers put [key: authorization, value: Bearer #{token}] of GET /auth. These headers will be needed for any action that is forbidden to users without tokens.
 
 
 
@@ -52,7 +58,7 @@ Routing for Users:
       <td>GET</td>
       <td>/users</td>
       <td>Index</td>
-      <td>Informs that you are logged in</td>
+      <td>Informs you that you are logged in</td>
     </tr>
     <tr>
       <td>GET</td>
@@ -137,24 +143,24 @@ Routing for Transactions:
 <table>
   <thead>
   	<tr>
-  	  <th>HTTP Request Type</th>
-  	  <th>URL Path</th>
-  	  <th>Action</th>
-  	  <th>Description</th>
+  	  <td>HTTP Request Type</td>
+  	  <td>URL Path</td>
+  	  <td>Action</td>
+  	  <td>Description</td>
   	</tr>
   </thead>
   <tbody>
   	<tr>
-  	  <th>GET</th>
-  	  <th>/transactions</th>
-  	  <th>Index</th>
-  	  <th>See all transactions, both deposits/withdrawals</th>
+  	  <td>GET</td>
+  	  <td>/transactions</td>
+  	  <td>Index</td>
+  	  <td>See all transactions. Includes both deposits and withdrawals.</td>
   	</tr>
   	<tr>
-  	  <th>POST</th>
-  	  <th>/transactions</th>
-  	  <th>Create</th>
-  	  <th>Create a transaction. Will send email alert if it is a withdrawal and there are four or fewer coins of the type you are withdrawing.</th>
+  	  <td>POST</td>
+  	  <td>/transactions</td>
+  	  <td>Create</td>
+  	  <td>Create a transaction. Will send email alert if it is a withdrawal and there are four or fewer coins of the type you are withdrawing.</td>
   	</tr>
   </tbody>
 </table>
