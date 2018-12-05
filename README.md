@@ -1,5 +1,5 @@
 
-<h1>Coin Machine API, code challenge for Mortgage Hippo</h1>
+<h1>Coin Machine API</h1>
 
 Heroku URL: https://cryptic-gorge-92449.herokuapp.com/
 
@@ -45,6 +45,36 @@ in the body.
   	  <td>/coins</td>
   	  <td>Index</td>
   	  <td>See all coins</td>
+  	</tr>
+  	<tr>
+  	  <td>GET</td>
+  	  <td>/coins/:id</td>
+  	  <td>Show</td>
+  	  <td>See one coin</td>
+  	</tr>
+  	<tr>
+  	  <td>GET</td>
+  	  <td>/coins/total_value</td>
+  	  <td>total_value</td>
+  	  <td>See total value of all coins</td>
+  	</tr>
+  	<tr>
+  	  <td>POST</td>
+  	  <td>/coins</td>
+  	  <td>Create</td>
+  	  <td>Create a coin</td>
+  	</tr>
+  	<tr>
+  	  <td>PUT</td>
+  	  <td>/coins/:id</td>
+  	  <td>Update</td>
+  	  <td>Update a coin</td>
+  	</tr>
+  	<tr>
+  	  <td>DELETE</td>
+  	  <td>/coins/:id</td>
+  	  <td>Destroy</td>
+  	  <td>Destroy one coin</td>
   	</tr>
   </tbody>
 </table>
