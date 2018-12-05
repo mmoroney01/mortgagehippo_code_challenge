@@ -3,7 +3,7 @@
 
 Heroku URL: https://cryptic-gorge-92449.herokuapp.com/
 
-All routes can be tested using Postman; under headers put [key: content-type, value: application/json].
+All routes can be tested using Postman. Precede each path with the Heroku URL, or to test locally run rails s in your command line and precede each path with localhost:3000. In either case, under headers for each route put [key: content-type, value: application/json].
 
 <h3>User Creation</h3>
 
@@ -37,8 +37,33 @@ in the body of POST /user_token.
 
 To log in, under headers put [key: authorization, value: Bearer #{token}] of GET /auth. These headers will be needed for any action that is forbidden to users without tokens.
 
+<h3>Creating a Coin</h3>
 
+To create a coin, put a json coin object like
 
+{
+  "coin":{
+    "name": "railscoin",
+    "value": "500"
+  }
+}
+
+in the body of POST /coins.
+
+<h3>Creating a Transaction</h3>
+
+To create a transaction, put a json transaction object like
+
+{
+  "transaction":{
+    "coin_id": "1",
+    "user_id": "1",
+    "deposit": true,
+    "withdrawal": false
+  }
+}
+
+in the body of POST /transactions.
 
 <h1>Routes</h1>
 
