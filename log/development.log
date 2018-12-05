@@ -11075,3 +11075,96 @@ Migrating to CreateTransactions (20181204221955)
   [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(5435060070456736965)[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users/create" for 127.0.0.1 at 2018-12-05 14:10:34 -0600
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"email"=>"larry@bit.coin", "password"=>"[FILTERED]", "username"=>"contract"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "larry@bit.coin"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "contract"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+No template found for UsersController#create, rendering head :no_content
+Completed 204 No Content in 94ms (ActiveRecord: 4.5ms)
+
+
+Started POST "/users/create" for 127.0.0.1 at 2018-12-05 14:10:49 -0600
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"email"=>"mary@bit.coin", "password"=>"[FILTERED]", "username"=>"contracts"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mary@bit.coin"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "contracts"], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "contracts"], ["email", "mary@bit.coin"], ["password_digest", "$2a$10$yqxU66ep67I8wYJGc1s4AOtMHDFDwqT3GmCiz98hnoG58axJEf9xa"], ["created_at", "2018-12-05 20:10:49.433549"], ["updated_at", "2018-12-05 20:10:49.433549"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering admin_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered admin_mailer/welcome_email.html.erb within layouts/mailer (0.9ms)
+AdminMailer#welcome_email: processed outbound mail in 192.9ms
+Sent mail to mary@bit.coin (5.3ms)
+Date: Wed, 05 Dec 2018 14:10:49 -0600
+From: from@example.com
+To: mary@bit.coin
+Message-ID: <5c0830c9c392c_e392aee8d0fde986434f@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: Welcome to the Coin Machine API!
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Welcome to Coin Machine API, contracts!</h1>
+  </body>
+</html>
+
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 200 OK in 471ms (Views: 3.5ms | ActiveRecord: 9.1ms)
+
+
+Started POST "/users/create" for 127.0.0.1 at 2018-12-05 14:11:56 -0600
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"email"=>"gary@bit.coin", "password"=>"[FILTERED]", "username"=>"passenger", "role"=>"admin"}}
+Unpermitted parameter: :role
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "gary@bit.coin"], ["LIMIT", 1]]
+  [1m[36mUser Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "passenger"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "passenger"], ["email", "gary@bit.coin"], ["password_digest", "$2a$10$/BJGcMXejvHb9zDIIfPEfOzTrflYoNjvyOpTYt1/QsUR9DVaV7eqy"], ["created_at", "2018-12-05 20:11:56.948322"], ["updated_at", "2018-12-05 20:11:56.948322"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering admin_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered admin_mailer/welcome_email.html.erb within layouts/mailer (0.5ms)
+AdminMailer#welcome_email: processed outbound mail in 9.7ms
+Sent mail to gary@bit.coin (2.0ms)
+Date: Wed, 05 Dec 2018 14:11:56 -0600
+From: from@example.com
+To: gary@bit.coin
+Message-ID: <5c08310ceaf65_e392aee8d0fdd58644db@mmoroney-Lenovo-YOGA-710-14IKB.mail>
+Subject: Welcome to the Coin Machine API!
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Welcome to Coin Machine API, passenger!</h1>
+  </body>
+</html>
+
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 90ms (Views: 0.5ms | ActiveRecord: 3.3ms)
+
+
